@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Home</class>
+ <widget class="QMainWindow" name="Home">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>600</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>600</width>
+    <height>600</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>600</width>
+    <height>600</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QFrame" name="content">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>10</y>
+      <width>600</width>
+      <height>600</height>
+     </rect>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <widget class="QLabel" name="logo">
+     <property name="geometry">
+      <rect>
+       <x>150</x>
+       <y>80</y>
+       <width>300</width>
+       <height>61</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>30</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>Projeto Estoque</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>230</y>
+       <width>171</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>14</pointsize>
+       <weight>50</weight>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>Status do estoque:</string>
+     </property>
+    </widget>
+    <widget class="QListWidget" name="listWidget">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>260</y>
+       <width>521</width>
+       <height>261</height>
+      </rect>
+     </property>
+    </widget>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>600</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuHome">
+    <property name="title">
+     <string>Home</string>
+    </property>
+    <addaction name="separator"/>
+    <addaction name="actionir_para"/>
+   </widget>
+   <widget class="QMenu" name="menuEstoque">
+    <property name="title">
+     <string>Estoque</string>
+    </property>
+    <addaction name="actionVer_Estoque"/>
+   </widget>
+   <widget class="QMenu" name="menuUsu_rios">
+    <property name="title">
+     <string>Usuários</string>
+    </property>
+    <addaction name="actionConsultar"/>
+    <addaction name="actionCadastrar_Novo"/>
+   </widget>
+   <widget class="QMenu" name="menuProdutos">
+    <property name="title">
+     <string>Produtos</string>
+    </property>
+    <addaction name="actionConsultar_2"/>
+    <addaction name="actionCadastrar"/>
+   </widget>
+   <widget class="QMenu" name="menuMovimenta_o">
+    <property name="title">
+     <string>Movimentação</string>
+    </property>
+    <addaction name="actionConsultar_3"/>
+   </widget>
+   <widget class="QMenu" name="menuLogout">
+    <property name="title">
+     <string>Logout</string>
+    </property>
+    <addaction name="actionSair"/>
+   </widget>
+   <addaction name="menuHome"/>
+   <addaction name="menuEstoque"/>
+   <addaction name="menuUsu_rios"/>
+   <addaction name="menuProdutos"/>
+   <addaction name="menuMovimenta_o"/>
+   <addaction name="menuLogout"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionir_para">
+   <property name="text">
+    <string>Pagina Inicial</string>
+   </property>
+  </action>
+  <action name="actionVer_Estoque">
+   <property name="text">
+    <string>Consultar</string>
+   </property>
+  </action>
+  <action name="actionConsultar">
+   <property name="text">
+    <string>Consultar</string>
+   </property>
+  </action>
+  <action name="actionCadastrar_Novo">
+   <property name="text">
+    <string>Cadastrar Novo</string>
+   </property>
+  </action>
+  <action name="actionConsultar_2">
+   <property name="text">
+    <string>Consultar</string>
+   </property>
+  </action>
+  <action name="actionConsultar_3">
+   <property name="text">
+    <string>Consultar</string>
+   </property>
+  </action>
+  <action name="actionSair">
+   <property name="text">
+    <string>Sair</string>
+   </property>
+  </action>
+  <action name="actionCadastrar">
+   <property name="text">
+    <string>Cadastrar</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
