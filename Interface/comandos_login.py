@@ -1,12 +1,13 @@
 from PyQt5 import uic, QtWidgets
 from PyQt5.QtWidgets import QMessageBox
 from Banco.estoque_db_tables import Banco
-from Banco.estoque_db_querys_autenticacao import Querys
+from Banco.estoque_db_querys_autenticacao import Querys_Autenticacao
+from Banco.estoque_db_querys_usuarios import Querys
 
 
 Banco('estoque.db')
-comandos_db = Querys('estoque.db')
-
+comandos_db = Querys_Autenticacao('estoque.db')
+comandos_db_usuarios = Querys('estoque.db')
 
 def Autenticar():
     usuario = telaLogin.txtUsuario.text()
@@ -15,22 +16,24 @@ def Autenticar():
     if usuario == "" or senha == "":
         QMessageBox.about(telaLogin,"Alerta","Obrigatório o preenchimento de Usuário e Senha")
     else:
-        #chama a def q verifica se existe algum user
-        #se existe executa oq ja existe
-        
-        valida_usuario = Autenticar_Banco(usuario,senha)
-        if valida_usuario != "" and valida_usuario != "Erro":
+        if Querys.selecionar_todos(comandos_db_usuarios) == False:
+            Querys.cadastrar(comandos_db_usuarios, "", usuario, "", senha, "ativo", "admin")
             telaLogin.close()
             telaHome.show()
-            QMessageBox.about(telaHome,"Bem-vindo(a)","Olá " + valida_usuario)
+            QMessageBox.about(telaHome,"","Bem-vindo(a)")
         else:
-            QMessageBox.about(telaLogin,"Alerta","Usuário e Senha inválidos.")
+            valida_usuario = Autenticar_Banco(usuario,senha)
+            if valida_usuario != None and valida_usuario != "Erro":
 
-        #senao chama def de cadastrar usuario e passa pra tela de home
-  
+                telaLogin.close()
+                telaHome.show()
+                QMessageBox.about(telaHome,"Bem-vindo(a)","Olá " + valida_usuario)
+            else:
+                QMessageBox.about(telaLogin,"Alerta","Usuário e Senha inválidos.")
+
 def Autenticar_Banco(usuario,senha):
 
-    autenticado = Querys.Autenticar(comandos_db, usuario,senha)
+    autenticado = Querys_Autenticacao.Autenticar(comandos_db, usuario,senha)
     
     return autenticado
 

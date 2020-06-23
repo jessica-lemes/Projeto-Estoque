@@ -1,7 +1,7 @@
 import sqlite3
 
 
-class Querys:
+class Querys_Autenticacao:
 
     def __init__(self, banco):
         self.conexao = sqlite3.connect(banco)
@@ -9,21 +9,21 @@ class Querys:
 
     def Autenticar(self, cpf, senha):
 
-            query = "select nome from usuarios where CPF = ? and senha = ?"
-            try:
-                retorno = self.cursor.execute(query,(cpf, senha))
-                nome = ""
+        self.conexao = sqlite3.connect('estoque.db')
+        self.cursor = self.conexao.cursor()
 
-                for registro in retorno.fetchall():
-                    nome = registro[0]        
-                    
-                self.cursor.close()
-                self.conexao.close()
+        query = "select nome from usuarios where CPF = ? and senha = ?"
+        try:
+            retorno = self.cursor.execute(query,(cpf, senha))
 
-                return nome
+            for registro in retorno.fetchall():
+                return registro[0]
 
-            except Exception as e:
-                return "Erro"
+            self.cursor.close()
+            self.conexao.close()
+
+        except Exception as e:
+            return "Erro"
 
 if __name__ == '__main__':
-    banco = Querys('estoque.db')
+    banco = Querys_Autenticacao('estoque.db')

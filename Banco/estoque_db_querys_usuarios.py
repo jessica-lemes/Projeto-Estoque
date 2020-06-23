@@ -8,20 +8,22 @@ class Querys:
         self.cursor = self.conexao.cursor()
 
     def cadastrar(self, nome, cpf, email, senha, situacao, tipo_usuario):
-        query = "INSERT OR IGNORE INTO usuarios (nome, cpf, email, senha, situacao, tipo_usuario)" \
-                   "VALUES (%s, %s, %s, %s, %s, %s)"
+        query = "INSERT OR IGNORE INTO usuarios (nome, cpf, email, senha, situacao, tipoUsuario)" \
+                   "VALUES (?, ?, ?, ?, ?, ?)"
         self.cursor.execute(query, (nome, cpf, email, senha, situacao, tipo_usuario))
         self.conexao.commit()
-        self.conexao.close()
         self.cursor.close()
+        self.conexao.close()
+
 
     def alterar(self, nome, cpf, email, senha=None, situacao=None, tipo_usuario=None, id_usuario=None):
         query = "UPDATE OR IGNORE usuarios SET nome = %s, cpf= %s, email = %s, senha = %s," \
                 "situacao=%s, tipo_usuario=%s WHERE id= %s"
         self.cursor.execute(query, (nome, cpf, email, senha, situacao, tipo_usuario, id_usuario))
         self.conexao.commit()
-        self.conexao.close()
         self.cursor.close()
+        self.conexao.close()
+
 
     def selecionar(self, nome):
         query = "SELECT * FROM usuarios WHERE nome = %s"
@@ -37,8 +39,9 @@ class Querys:
             return True
         else:
             return False
-        self.conexao.close()
         self.cursor.close()
+        self.conexao.close()
+
 
     def excluir(self, id):
         query = "DELETE FROM usuarios WHERE id = %s"
