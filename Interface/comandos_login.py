@@ -17,7 +17,7 @@ def Autenticar():
         QMessageBox.about(telaLogin,"Alerta","Obrigatório o preenchimento de Usuário e Senha")
     else:
         if Querys.selecionar_todos(comandos_db_usuarios) == False:
-            Querys.cadastrar(comandos_db_usuarios, "", usuario, "", senha, "ativo", "admin")
+            Querys.cadastrar(comandos_db_usuarios, "", usuario, "", senha,"", "ativo", "admin")
             telaLogin.close()
             telaHome.show()
             QMessageBox.about(telaHome,"","Bem-vindo(a)")

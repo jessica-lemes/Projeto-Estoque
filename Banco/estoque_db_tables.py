@@ -17,6 +17,7 @@ class Banco:
                     'CPF VARCHAR(11),'
                     'email VARCHAR(50),'
                     'senha VARCHAR(20),'
+                    'funcao VARCHAR(20),'        
                     'situacao VARCHAR(10),'
                     'tipoUsuario VARCHAR(20)'
                     ')')
