@@ -105,39 +105,39 @@
      <string>Home</string>
     </property>
     <addaction name="separator"/>
-    <addaction name="actionir_para"/>
+    <addaction name="PaginaInicial"/>
    </widget>
    <widget class="QMenu" name="menuEstoque">
     <property name="title">
      <string>Estoque</string>
     </property>
-    <addaction name="actionVer_Estoque"/>
+    <addaction name="ConsultarEstoque"/>
    </widget>
    <widget class="QMenu" name="menuUsu_rios">
     <property name="title">
      <string>Usuários</string>
     </property>
-    <addaction name="actionConsultar"/>
-    <addaction name="actionCadastrar_Novo"/>
+    <addaction name="ConsultarUsuario"/>
+    <addaction name="CadastrarUsuario"/>
    </widget>
    <widget class="QMenu" name="menuProdutos">
     <property name="title">
      <string>Produtos</string>
     </property>
-    <addaction name="actionConsultar_2"/>
-    <addaction name="actionCadastrar"/>
+    <addaction name="ConsultarProdutos"/>
+    <addaction name="CadastrarProdutos"/>
    </widget>
    <widget class="QMenu" name="menuMovimenta_o">
     <property name="title">
      <string>Movimentação</string>
     </property>
-    <addaction name="actionConsultar_3"/>
+    <addaction name="ConsultarMovimentacao"/>
    </widget>
    <widget class="QMenu" name="menuLogout">
     <property name="title">
      <string>Logout</string>
     </property>
-    <addaction name="actionSair"/>
+    <addaction name="Logout"/>
    </widget>
    <addaction name="menuHome"/>
    <addaction name="menuEstoque"/>
@@ -147,42 +147,42 @@
    <addaction name="menuLogout"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
-  <action name="actionir_para">
+  <action name="PaginaInicial">
    <property name="text">
     <string>Pagina Inicial</string>
    </property>
   </action>
-  <action name="actionVer_Estoque">
+  <action name="ConsultarEstoque">
    <property name="text">
     <string>Consultar</string>
    </property>
   </action>
-  <action name="actionConsultar">
+  <action name="ConsultarUsuario">
    <property name="text">
     <string>Consultar</string>
    </property>
   </action>
-  <action name="actionCadastrar_Novo">
+  <action name="CadastrarUsuario">
    <property name="text">
     <string>Cadastrar Novo</string>
    </property>
   </action>
-  <action name="actionConsultar_2">
+  <action name="ConsultarProdutos">
    <property name="text">
     <string>Consultar</string>
    </property>
   </action>
-  <action name="actionConsultar_3">
+  <action name="ConsultarMovimentacao">
    <property name="text">
     <string>Consultar</string>
    </property>
   </action>
-  <action name="actionSair">
+  <action name="Logout">
    <property name="text">
     <string>Sair</string>
    </property>
   </action>
-  <action name="actionCadastrar">
+  <action name="CadastrarProdutos">
    <property name="text">
     <string>Cadastrar</string>
    </property>

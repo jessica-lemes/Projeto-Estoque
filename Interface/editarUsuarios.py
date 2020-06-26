@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'cadUsuarios.ui'
+# Form implementation generated from reading ui file 'editarUsuarios.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.0
 #
@@ -11,13 +11,13 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-class Ui_cadUsuarios(object):
-    def setupUi(self, cadUsuarios):
-        cadUsuarios.setObjectName("cadUsuarios")
-        cadUsuarios.resize(530, 258)
-        cadUsuarios.setMinimumSize(QtCore.QSize(530, 258))
-        cadUsuarios.setMaximumSize(QtCore.QSize(530, 258))
-        self.centralwidget = QtWidgets.QWidget(cadUsuarios)
+class Ui_editUsuarios(object):
+    def setupUi(self, editUsuarios):
+        editUsuarios.setObjectName("editUsuarios")
+        editUsuarios.resize(530, 258)
+        editUsuarios.setMinimumSize(QtCore.QSize(530, 258))
+        editUsuarios.setMaximumSize(QtCore.QSize(530, 258))
+        self.centralwidget = QtWidgets.QWidget(editUsuarios)
         self.centralwidget.setObjectName("centralwidget")
         self.lineNome = QtWidgets.QLineEdit(self.centralwidget)
         self.lineNome.setGeometry(QtCore.QRect(96, 9, 381, 25))
@@ -53,14 +53,15 @@ class Ui_cadUsuarios(object):
         self.lineEmail.setObjectName("lineEmail")
         self.lineSenha = QtWidgets.QLineEdit(self.centralwidget)
         self.lineSenha.setGeometry(QtCore.QRect(96, 133, 381, 25))
+        self.lineSenha.setMaxLength(12)
         self.lineSenha.setEchoMode(QtWidgets.QLineEdit.Password)
         self.lineSenha.setObjectName("lineSenha")
         self.btnLimpar = QtWidgets.QPushButton(self.centralwidget)
         self.btnLimpar.setGeometry(QtCore.QRect(300, 200, 80, 25))
         self.btnLimpar.setObjectName("btnLimpar")
-        self.btnCadastrar = QtWidgets.QPushButton(self.centralwidget)
-        self.btnCadastrar.setGeometry(QtCore.QRect(300, 170, 80, 25))
-        self.btnCadastrar.setObjectName("btnCadastrar")
+        self.btnSalvar = QtWidgets.QPushButton(self.centralwidget)
+        self.btnSalvar.setGeometry(QtCore.QRect(300, 170, 80, 25))
+        self.btnSalvar.setObjectName("btnSalvar")
         self.btnVoltar = QtWidgets.QPushButton(self.centralwidget)
         self.btnVoltar.setGeometry(QtCore.QRect(400, 200, 80, 25))
         self.btnVoltar.setObjectName("btnVoltar")
@@ -100,48 +101,48 @@ class Ui_cadUsuarios(object):
         self.rbtnInativo = QtWidgets.QRadioButton(self.gbxStatus)
         self.rbtnInativo.setGeometry(QtCore.QRect(0, 40, 71, 23))
         self.rbtnInativo.setObjectName("rbtnInativo")
-        cadUsuarios.setCentralWidget(self.centralwidget)
-        self.menubar = QtWidgets.QMenuBar(cadUsuarios)
+        editUsuarios.setCentralWidget(self.centralwidget)
+        self.menubar = QtWidgets.QMenuBar(editUsuarios)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 530, 22))
         self.menubar.setObjectName("menubar")
-        cadUsuarios.setMenuBar(self.menubar)
-        self.actionCadastrar = QtWidgets.QAction(cadUsuarios)
+        editUsuarios.setMenuBar(self.menubar)
+        self.actionCadastrar = QtWidgets.QAction(editUsuarios)
         self.actionCadastrar.setObjectName("actionCadastrar")
-        self.actionSair = QtWidgets.QAction(cadUsuarios)
+        self.actionSair = QtWidgets.QAction(editUsuarios)
         self.actionSair.setObjectName("actionSair")
-        self.actionConsultar = QtWidgets.QAction(cadUsuarios)
+        self.actionConsultar = QtWidgets.QAction(editUsuarios)
         self.actionConsultar.setObjectName("actionConsultar")
 
-        self.retranslateUi(cadUsuarios)
-        QtCore.QMetaObject.connectSlotsByName(cadUsuarios)
+        self.retranslateUi(editUsuarios)
+        QtCore.QMetaObject.connectSlotsByName(editUsuarios)
 
-    def retranslateUi(self, cadUsuarios):
+    def retranslateUi(self, editUsuarios):
         _translate = QtCore.QCoreApplication.translate
-        cadUsuarios.setWindowTitle(_translate("cadUsuarios", "Cadastro de Usuários"))
-        self.labelNome.setText(_translate("cadUsuarios", "Nome"))
-        self.labelCpf.setText(_translate("cadUsuarios", "CPF"))
-        self.labelFuncao.setText(_translate("cadUsuarios", "Função"))
-        self.labelEmail.setText(_translate("cadUsuarios", "E-mail"))
-        self.labelSenha.setText(_translate("cadUsuarios", "Senha"))
-        self.btnLimpar.setText(_translate("cadUsuarios", "Limpar"))
-        self.btnCadastrar.setText(_translate("cadUsuarios", "Cadastrar"))
-        self.btnVoltar.setText(_translate("cadUsuarios", "Voltar"))
-        self.gbxPermissao.setTitle(_translate("cadUsuarios", "Permissão de acesso"))
-        self.rbtnAdmin.setText(_translate("cadUsuarios", "Administrador"))
-        self.rbtnUsuario.setText(_translate("cadUsuarios", "Usuário"))
-        self.gbxStatus.setTitle(_translate("cadUsuarios", "Status"))
-        self.rbtnAtivo.setText(_translate("cadUsuarios", "Ativo"))
-        self.rbtnInativo.setText(_translate("cadUsuarios", "Inativo"))
-        self.actionCadastrar.setText(_translate("cadUsuarios", "Cadastrar"))
-        self.actionSair.setText(_translate("cadUsuarios", "Sair"))
-        self.actionConsultar.setText(_translate("cadUsuarios", "Consultar"))
+        editUsuarios.setWindowTitle(_translate("editUsuarios", "Editar Usuários"))
+        self.labelNome.setText(_translate("editUsuarios", "Nome"))
+        self.labelCpf.setText(_translate("editUsuarios", "CPF"))
+        self.labelFuncao.setText(_translate("editUsuarios", "Função"))
+        self.labelEmail.setText(_translate("editUsuarios", "E-mail"))
+        self.labelSenha.setText(_translate("editUsuarios", "Senha"))
+        self.btnLimpar.setText(_translate("editUsuarios", "Limpar"))
+        self.btnSalvar.setText(_translate("editUsuarios", "Salvar"))
+        self.btnVoltar.setText(_translate("editUsuarios", "Voltar"))
+        self.gbxPermissao.setTitle(_translate("editUsuarios", "Permissão de acesso"))
+        self.rbtnAdmin.setText(_translate("editUsuarios", "Administrador"))
+        self.rbtnUsuario.setText(_translate("editUsuarios", "Usuário"))
+        self.gbxStatus.setTitle(_translate("editUsuarios", "Status"))
+        self.rbtnAtivo.setText(_translate("editUsuarios", "Ativo"))
+        self.rbtnInativo.setText(_translate("editUsuarios", "Inativo"))
+        self.actionCadastrar.setText(_translate("editUsuarios", "Cadastrar"))
+        self.actionSair.setText(_translate("editUsuarios", "Sair"))
+        self.actionConsultar.setText(_translate("editUsuarios", "Consultar"))
 
 
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
-    cadUsuarios = QtWidgets.QMainWindow()
-    ui = Ui_cadUsuarios()
-    ui.setupUi(cadUsuarios)
-    cadUsuarios.show()
+    editUsuarios = QtWidgets.QMainWindow()
+    ui = Ui_editUsuarios()
+    ui.setupUi(editUsuarios)
+    editUsuarios.show()
     sys.exit(app.exec_())

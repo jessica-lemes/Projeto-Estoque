@@ -16,13 +16,18 @@ class Querys:
         self.conexao.close()
 
 
-    def alterar(self, nome, cpf, email, senha=None, funcao=None, situacao=None, tipo_usuario=None, id_usuario=None):
-        query = "UPDATE OR IGNORE usuarios SET nome = %s, cpf= %s, email = %s, senha = %s, funcao =%s" \
-                "situacao=%s, tipo_usuario=%s WHERE id= %s"
-        self.cursor.execute(query, (nome, cpf, email, senha,funcao, situacao, tipo_usuario, id_usuario))
-        self.conexao.commit()
-        self.cursor.close()
-        self.conexao.close()
+    def editar(self, nome, cpf, email, senha=None, funcao=None, situacao=None, tipo_usuario=None, id_usuario=None):
+        try:
+
+            query = "UPDATE OR IGNORE usuarios SET nome = ?, cpf= ?, email = ?, senha = ?, funcao =?, situacao=?, tipoUsuario=?" \
+                    " WHERE idUsuario= ?"
+            self.cursor.execute(query, (nome, cpf, email, senha,funcao, situacao, tipo_usuario,id_usuario,))
+            self.conexao.commit()
+            self.cursor.close()
+            self.conexao.close()
+
+        except Exception as e:
+            return "Erro"
 
 
     def selecionar(self, nome):

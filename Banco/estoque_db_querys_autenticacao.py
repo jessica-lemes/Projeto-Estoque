@@ -1,6 +1,5 @@
 import sqlite3
 
-
 class Querys_Autenticacao:
 
     def __init__(self, banco):
@@ -24,6 +23,22 @@ class Querys_Autenticacao:
 
         except Exception as e:
             return "Erro"
+
+    def buscar_banco(self, nome):
+        query = "select * from usuarios where nome like ?"
+        try:
+            retorno = self.cursor.execute(query, (nome,))
+            lista = []
+            for registro in retorno.fetchall():
+                lista.append(registro)
+            return lista
+
+            self.cursor.close()
+            self.conexao.close()
+
+        except Exception as e:
+            return "Erro"
+
 
 if __name__ == '__main__':
     banco = Querys_Autenticacao('estoque.db')

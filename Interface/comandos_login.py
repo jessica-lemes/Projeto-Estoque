@@ -4,7 +4,6 @@ from Banco.estoque_db_tables import Banco
 from Banco.estoque_db_querys_autenticacao import Querys_Autenticacao
 from Banco.estoque_db_querys_usuarios import Querys
 
-
 Banco('estoque.db')
 comandos_db = Querys_Autenticacao('estoque.db')
 comandos_db_usuarios = Querys('estoque.db')
