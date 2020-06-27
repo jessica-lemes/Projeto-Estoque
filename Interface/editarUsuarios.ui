@@ -109,7 +109,7 @@
      <rect>
       <x>96</x>
       <y>40</y>
-      <width>381</width>
+      <width>281</width>
       <height>25</height>
      </rect>
     </property>
@@ -316,6 +316,38 @@
       <string>Inativo</string>
      </property>
     </widget>
+   </widget>
+   <widget class="QLabel" name="labelId">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>420</x>
+      <y>40</y>
+      <width>41</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="labelId_2">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>390</x>
+      <y>40</y>
+      <width>21</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>ID:</string>
+    </property>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
