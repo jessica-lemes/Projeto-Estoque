@@ -39,6 +39,12 @@ class Querys:
         self.conexao.close()
         self.cursor.close()
 
+    def selecionar_cpf(self, cpf):
+        query = "SELECT * FROM usuarios WHERE cpf = ?"
+        self.cursor.execute(query, (cpf,))
+
+        self.conexao.close()
+        self.cursor.close()
 
     def selecionar_id(self, id):
         try:
