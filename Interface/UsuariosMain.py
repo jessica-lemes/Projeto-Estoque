@@ -1,6 +1,6 @@
 from PyQt5 import uic, QtWidgets
-from PyQt5.QtWidgets import QMessageBox, QTableWidgetItem, QApplication
-from PyQt5.Qt import QTableWidgetItem, QAbstractItemView
+from PyQt5.QtWidgets import QMessageBox
+from PyQt5.Qt import QTableWidgetItem
 from Banco.estoque_db_querys_usuarios import Querys
 from Banco.estoque_db_querys_autenticacao import Querys_Autenticacao
 
@@ -116,7 +116,6 @@ def botao_editar_usuario():
         tipo_usuario = "Usuário"
     else:
         tipo_usuario = "Administrador"
-
     id = telaEditUsuarios.labelId.text()
 
     editar_banco(id, nome, cpf, email, senha, funcao, situacao, tipo_usuario)
@@ -167,6 +166,7 @@ def botao_pesquisar():
     l = 0
     c = 0
     for item in resultado:
+        c=0
         for colItem in item:
             newItem = QTableWidgetItem(str(colItem))
             telaConsUsuarios.tableWidget.setItem(l,c,newItem)
