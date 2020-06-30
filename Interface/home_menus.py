@@ -2,6 +2,8 @@ import sys
 from PyQt5.QtWidgets import QMainWindow, QApplication
 from PyQt5 import QtCore
 from Interface.Home import *
+from Interface import controller
+
 
 class HomeMain(QMainWindow, Ui_Home):
 
@@ -12,8 +14,12 @@ class HomeMain(QMainWindow, Ui_Home):
         super().setupUi(self)
 
         self.CadastrarProdutos.triggered.connect(self.switch_cad_produtos)
+        self.ConsultarProdutos.triggered.connect(self.switch_cons_produtos)
+
 
     def switch_cad_produtos(self):
         self.switch_window.emit()
 
+    def switch_cons_produtos(self):
+        self.switch_window.emit()
 

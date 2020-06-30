@@ -181,17 +181,17 @@
    <widget class="QLabel" name="label_2">
     <property name="geometry">
      <rect>
-      <x>30</x>
+      <x>70</x>
       <y>100</y>
-      <width>101</width>
+      <width>51</width>
       <height>17</height>
      </rect>
     </property>
     <property name="text">
-     <string>Palavra-chave:</string>
+     <string>Nome:</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QPushButton" name="btnPesquisar">
     <property name="geometry">
      <rect>
       <x>350</x>
