@@ -14,7 +14,7 @@
    <string>Consulta Produtos</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QTableWidget" name="tableWidget">
+   <widget class="QTableWidget" name="tabelaConsultaProdutos">
     <property name="geometry">
      <rect>
       <x>25</x>
@@ -202,6 +202,19 @@
     </property>
     <property name="text">
      <string>Pesquisar</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btnNovo">
+    <property name="geometry">
+     <rect>
+      <x>450</x>
+      <y>100</y>
+      <width>101</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Novo Produto</string>
     </property>
    </widget>
   </widget>

@@ -1,13 +1,9 @@
-import sys
-from PyQt5.QtWidgets import QMainWindow, QApplication
-from PyQt5 import QtCore
-from Interface.Home import *
-from Interface import controller
+from PyQt5.QtWidgets import QMainWindow, QWidget
+from Interface import Home, cadProdutosMain, consultaProdutosMain
 
 
-class HomeMain(QMainWindow, Ui_Home):
 
-    switch_window = QtCore.pyqtSignal()
+class HomeMain(QMainWindow, Home.Ui_Home):
 
     def __init__(self, parent=None):
         super(HomeMain, self).__init__(parent)
@@ -18,8 +14,14 @@ class HomeMain(QMainWindow, Ui_Home):
 
 
     def switch_cad_produtos(self):
-        self.switch_window.emit()
+        cad_produtos = cadProdutosMain.CadProdutos(self)
+        cad_produtos.show()
+        home = HomeMain()
+        home.close()
+
 
     def switch_cons_produtos(self):
-        self.switch_window.emit()
-
+        cons_produtos = consultaProdutosMain.ConsultaProdutos(self)
+        cons_produtos.show()
+        home = HomeMain()
+        home.close()

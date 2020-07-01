@@ -1,12 +1,12 @@
-import  sys
-from Interface import controller
-from PyQt5 import QtWidgets, QtCore
+import sys
+from PyQt5 import QtWidgets
+from Interface import home_menus
 
 
 def main():
     app = QtWidgets.QApplication(sys.argv)
-    controlador = controller.Controller()
-    controlador.show_main()
+    principal = home_menus.HomeMain()
+    principal.show()
     sys.exit(app.exec_())
 
 

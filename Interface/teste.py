@@ -1,98 +1,65 @@
 import sys
-from PyQt5 import QtCore, QtWidgets
+from PyQt5.QtWidgets import QMainWindow, QApplication, QPushButton
+from PyQt5.QtWidgets import QWidget, QGridLayout
 
 
-class MainWindow(QtWidgets.QWidget):
+class App(QMainWindow):
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        self.central_widget = QWidget()
+        self.grid = QGridLayout(self.central_widget)
 
-    switch_window = QtCore.pyqtSignal(str)
+        self.btn_abrir_janela = QPushButton('Clique em mim')
+        self.btn_abrir_janela.setStyleSheet('font-size: 40px;')
+        self.grid.addWidget(self.btn_abrir_janela, 0, 0, 1, 1)
 
-    def __init__(self):
-        QtWidgets.QWidget.__init__(self)
-        self.setWindowTitle('Main Window')
+        self.btn_abrir_janela.clicked.connect(self.abrir_janela)
 
-        layout = QtWidgets.QGridLayout()
+        self.setCentralWidget(self.central_widget)
 
-        self.line_edit = QtWidgets.QLineEdit()
-        layout.addWidget(self.line_edit)
+    def abrir_janela(self):
+        self.janela_filha = Janela(self)
+        self.janela_filha.show()
 
-        self.button = QtWidgets.QPushButton('Switch Window')
-        self.button.clicked.connect(self.switch)
-        layout.addWidget(self.button)
+        self.btn_fechar_janela = QPushButton('Feche a janela')
+        self.btn_fechar_janela.setStyleSheet('font-size: 40px;')
+        self.grid.addWidget(self.btn_fechar_janela, 1, 0, 1, 1)
 
-        self.setLayout(layout)
+        self.btn_fechar_janela.clicked.connect(self.fechar_janela)
 
-    def switch(self):
-        self.switch_window.emit(self.line_edit.text())
-
-
-class WindowTwo(QtWidgets.QWidget):
-
-    def __init__(self, text):
-        QtWidgets.QWidget.__init__(self)
-        self.setWindowTitle('Window Two')
-
-        layout = QtWidgets.QGridLayout()
-
-        self.label = QtWidgets.QLabel(text)
-        layout.addWidget(self.label)
-
-        self.button = QtWidgets.QPushButton('Close')
-        self.button.clicked.connect(self.close)
-
-        layout.addWidget(self.button)
-
-        self.setLayout(layout)
+    def fechar_janela(self):
+        self.janela_filha.fechar()
+        self.btn_fechar_janela.deleteLater()
 
 
-class Login(QtWidgets.QWidget):
+class Janela(QMainWindow):
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        self.central_widget = QWidget()
+        self.grid = QGridLayout(self.central_widget)
+        self.janela_principal = parent
 
-    switch_window = QtCore.pyqtSignal()
+        self.botao = QPushButton('Muda cor na janela principal')
+        self.botao.setStyleSheet('font-size: 40px;')
+        self.grid.addWidget(self.botao, 0, 0, 1, 1)
 
-    def __init__(self):
-        QtWidgets.QWidget.__init__(self)
-        self.setWindowTitle('Login')
+        self.botao.clicked.connect(
+            self.muda_botao_da_janela_principal
+        )
 
-        layout = QtWidgets.QGridLayout()
+        self.setCentralWidget(self.central_widget)
 
-        self.button = QtWidgets.QPushButton('Login')
-        self.button.clicked.connect(self.login)
+    def muda_botao_da_janela_principal(self):
+        self.janela_principal.btn_abrir_janela.setStyleSheet(
+            'font-size: 40px; background: red;'
+        )
 
-        layout.addWidget(self.button)
-
-        self.setLayout(layout)
-
-    def login(self):
-        self.switch_window.emit()
-
-
-class Controller:
-
-    def __init__(self):
-        pass
-
-    def show_login(self):
-        self.login = Login()
-        self.login.switch_window.connect(self.show_main)
-        self.login.show()
-
-    def show_main(self):
-        self.window = MainWindow()
-        self.window.switch_window.connect(self.show_window_two)
-        self.login.close()
-        self.window.show()
-
-    def show_window_two(self, text):
-        self.window_two = WindowTwo(text)
-        self.window.close()
-        self.window_two.show()
-
-
-def main():
-    app = QtWidgets.QApplication(sys.argv)
-    controller = Controller()
-    controller.show_login()
-    sys.exit(app.exec_())
+    def fechar(self):
+        self.close()
 
 
 if __name__ == '__main__':
-    main()
+    qt = QApplication(sys.argv)
+    app = App()
+    app.show()
+    qt.exec_()
