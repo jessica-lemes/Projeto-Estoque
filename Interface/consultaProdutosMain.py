@@ -19,7 +19,7 @@ class ConsultaProdutos(QMainWindow, consultaProdutos_.Ui_MainWindow):
         l=0
         c=0
         if self.lineEdit == '':
-            resultado = self.cons_prod.selecionar_todos(self)
+            resultado = self.cons_prod.selecionar_todos
             for item in resultado:
                 for colItem in item:
                     newItem = QTableWidgetItem(str(colItem))

@@ -3,7 +3,8 @@ import sqlite3
 
 class CadProdutosDB:
 
-    def __init__(self, banco):
+    def __init__(self):
+        banco = CadProdutosDB('estoque.db')
         self.conexao = sqlite3.connect(banco)
         self.cursor = self.conexao.cursor()
 
@@ -44,6 +45,3 @@ class CadProdutosDB:
         self.conexao.commit()
         self.conexao.close()
         self.cursor.close()
-
-if __name__ == '__main__':
-    banco = CadProdutosDB('estoque.db')
