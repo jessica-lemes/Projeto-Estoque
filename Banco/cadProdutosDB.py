@@ -25,26 +25,22 @@ class CadProdutosDB:
         self.conexao.close()
         self.cursor.close()
 
-    def selecionar(self, id):
-        query = "SELECT * FROM produtos WHERE id = %s"
-        self.cursor.execute(query, (id,))
-
+    def selecionar(self, nome):
+        query = "SELECT * FROM produtos WHERE nome = ?"
+        self.cursor.execute(query, (nome,))
         self.conexao.close()
         self.cursor.close()
 
     def selecionar_todos(self):
         query = "SELECT * FROM produtos"
-        self.cursor.execute(query)
-        if self.cursor.fetchall():
-            return True
-        else:
-            return False
+        resultado = self.cursor.execute(query)
+        return resultado.fetchall()
         self.conexao.close()
         self.cursor.close()
 
-    def excluir(self, id):
-        query = "DELETE FROM produtos WHERE id = %s"
-        self.cursor.execute(query, (id,))
+    def excluir(self, nome):
+        query = "DELETE FROM produtos WHERE nome = %s"
+        self.cursor.execute(query, (nome,))
         self.conexao.commit()
         self.conexao.close()
         self.cursor.close()

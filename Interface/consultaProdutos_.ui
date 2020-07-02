@@ -171,9 +171,9 @@
    <widget class="QLineEdit" name="lineEdit">
     <property name="geometry">
      <rect>
-      <x>130</x>
+      <x>80</x>
       <y>100</y>
-      <width>211</width>
+      <width>261</width>
       <height>25</height>
      </rect>
     </property>
@@ -181,7 +181,7 @@
    <widget class="QLabel" name="label_2">
     <property name="geometry">
      <rect>
-      <x>70</x>
+      <x>30</x>
       <y>100</y>
       <width>51</width>
       <height>17</height>
@@ -215,6 +215,19 @@
     </property>
     <property name="text">
      <string>Novo Produto</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btnVoltar">
+    <property name="geometry">
+     <rect>
+      <x>560</x>
+      <y>100</y>
+      <width>89</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Voltar</string>
     </property>
    </widget>
   </widget>
