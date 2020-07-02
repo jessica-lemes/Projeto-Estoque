@@ -12,7 +12,7 @@ class CadProdutos(QMainWindow, cadProdutos.Ui_cadProdutos):
         self.btnCadastrar.clicked.connect(self.cadastra)
         self.btnLimpar.clicked.connect(self.limpar)
         self.btnVoltar.clicked.connect(self.voltar)
-        self.cad_prod = CadProdutosDB('estoque.db')
+
         self.actionSair.triggered.connect(self.voltar)
         self.janela_principal = parent
 
