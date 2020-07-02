@@ -14,20 +14,24 @@ class ConsultaProdutos(QMainWindow, consultaProdutos_.Ui_MainWindow):
         self.btnVoltar.clicked.connect(self.voltar)
 
 
-
+    resultado = ''
     def pesquisar(self, id = None):
         l=0
         c=0
-        if self.lineEdit == '':
-            resultado = self.cons_prod.selecionar_todos
+        if self.lineEdit.text() == '':
+            cons_prod = cadProdutosDB.CadProdutosDB()
+            resultado = cons_prod.selecionar_todos()
             for item in resultado:
                 for colItem in item:
-                    newItem = QTableWidgetItem(str(colItem))
+                    newItem = QTableWidgetItem(colItem)
                     self.tabelaConsultaProdutos.setItem(l, c, newItem)
                     c += 1
                 l += 1
         else:
             return False
+
+    def __getitem__(self, item):
+        return self.resultado[item]
 
     def janela_cadastro(self):
         jan_cad = cadProdutosMain.CadProdutos(self)

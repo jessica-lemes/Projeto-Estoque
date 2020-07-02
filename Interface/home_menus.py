@@ -2,7 +2,6 @@ from PyQt5.QtWidgets import QMainWindow, QWidget
 from Interface import Home, cadProdutosMain, consultaProdutosMain
 
 
-
 class HomeMain(QMainWindow, Home.Ui_Home):
 
     def __init__(self, parent=None):
