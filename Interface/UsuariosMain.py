@@ -1,6 +1,6 @@
 from PyQt5 import uic, QtWidgets
-from PyQt5.QtWidgets import QMessageBox, QTableWidgetItem, QApplication
-from PyQt5.Qt import QTableWidgetItem, QAbstractItemView
+from PyQt5.QtWidgets import QMessageBox
+from PyQt5.Qt import QTableWidgetItem
 from Banco.estoque_db_querys_usuarios import Querys
 from Banco.estoque_db_querys_autenticacao import Querys_Autenticacao
 
@@ -50,15 +50,15 @@ def botao_editar():
     lista = buscar_id_bd(int(id))
 
     telaEditUsuarios.lineNome.setText(str(lista[0][1]))
-    telaEditUsuarios.lineCpf.setText(lista[0][2])
-    telaEditUsuarios.lineFuncao.setText(lista[0][3])
-    telaEditUsuarios.lineEmail.setText(lista[0][4])
-    telaEditUsuarios.lineSenha.setText(lista[0][5])
-    if lista[0][6] == "Ativo":
+    telaEditUsuarios.lineCpf.setText(str(lista[0][2]))
+    telaEditUsuarios.lineFuncao.setText(str(lista[0][3]))
+    telaEditUsuarios.lineEmail.setText(str(lista[0][4]))
+    telaEditUsuarios.lineSenha.setText(str(lista[0][5]))
+    if str(lista[0][6]) == "Ativo":
         telaEditUsuarios.rbtnAtivo.setChecked(True)
     else:
         telaEditUsuarios.rbtnInativo.setChecked(True)
-    if lista[0][7] == "Usuário":
+    if str(lista[0][7]) == "Usuário":
         telaEditUsuarios.rbtnUsuario.setChecked(True)
     else:
         telaEditUsuarios.rbtnAdmin.setChecked(True)
@@ -100,7 +100,7 @@ def cadastrar():
         tipo_usuario = "Usuário"
     else:
         tipo_usuario = "Administrador"
-    cadastrar_banco(nome,cpf,funcao,email,senha,situacao,tipo_usuario)
+    cadastrar_banco(nome,cpf,email,senha,funcao,situacao,tipo_usuario)
 
 def botao_editar_usuario():
     nome = telaEditUsuarios.lineNome.text()
@@ -116,8 +116,6 @@ def botao_editar_usuario():
         tipo_usuario = "Usuário"
     else:
         tipo_usuario = "Administrador"
-
-
     id = telaEditUsuarios.labelId.text()
 
     editar_banco(id, nome, cpf, email, senha, funcao, situacao, tipo_usuario)
@@ -137,7 +135,6 @@ def cadastrar_banco(nome, cpf, email, senha,funcao, situacao,tipo_usuario):
                 Querys.cadastrar(comandos_db_usuarios, nome, cpf, email, senha,funcao, situacao, tipo_usuario)
                 QMessageBox.about(telaCadUsuarios,"Mensagem","Usuário cadastrado com sucesso.")
                 cad_limpar()
-
 
 def editar_banco(id, nome, cpf, email, senha,funcao, situacao,tipo_usuario):
     if nome == "" or cpf == "" or email == "" or senha == "" or funcao == "":
@@ -169,6 +166,7 @@ def botao_pesquisar():
     l = 0
     c = 0
     for item in resultado:
+        c=0
         for colItem in item:
             newItem = QTableWidgetItem(str(colItem))
             telaConsUsuarios.tableWidget.setItem(l,c,newItem)

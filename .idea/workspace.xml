@@ -25,10 +25,32 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="41be07e7-64df-448e-aea5-857e134c01c7" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Banco/db_estoque.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Interface/EstoqueMain.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Interface/consultarEstoque.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Interface/consultarEstoque.ui" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Interface/consultarMovimentacao.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Interface/consultarMovimentacao.ui" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Interface/editarEstoque.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Interface/editarEstoque.ui" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Projeto-Estoque.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Projeto-Estoque.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/Banco/cadProdutosDB.py" beforeDir="false" afterPath="$PROJECT_DIR$/Banco/cadProdutosDB.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Interface/consultaProdutosMain.py" beforeDir="false" afterPath="$PROJECT_DIR$/Interface/consultaProdutosMain.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Interface/home_menus.py" beforeDir="false" afterPath="$PROJECT_DIR$/Interface/home_menus.py" afterDir="false" />
+=======
+<<<<<<< HEAD
+      <change beforePath="$PROJECT_DIR$/Interface/UsuariosMain.py" beforeDir="false" afterPath="$PROJECT_DIR$/Interface/UsuariosMain.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Interface/consultaProdutosMain.py" beforeDir="false" afterPath="$PROJECT_DIR$/Interface/consultaProdutosMain.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Interface/estoque.db" beforeDir="false" afterPath="$PROJECT_DIR$/Interface/estoque.db" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/Interface/cadProdutosMain.py" beforeDir="false" afterPath="$PROJECT_DIR$/Interface/cadProdutosMain.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Interface/consultaProdutosMain.py" beforeDir="false" afterPath="$PROJECT_DIR$/Interface/consultaProdutosMain.py" afterDir="false" />
+>>>>>>> master
+>>>>>>> bb56540a989b8be708487bff9e0ba32d0d25cd25
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,7 +98,7 @@
     </key>
   </component>
   <component name="RunManager" selected="Python.main">
-    <configuration name="UsuariosMain" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="EstoqueMain" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Projeto-Estoque" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -89,7 +111,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Interface/UsuariosMain.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Interface/EstoqueMain.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -98,7 +120,11 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+<<<<<<< HEAD
     <configuration name="cadProdutosDB" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+=======
+    <configuration name="comandos_login" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+>>>>>>> bb56540a989b8be708487bff9e0ba32d0d25cd25
       <module name="Projeto-Estoque" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -111,7 +137,11 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+<<<<<<< HEAD
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Banco/cadProdutosDB.py" />
+=======
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Interface/comandos_login.py" />
+>>>>>>> bb56540a989b8be708487bff9e0ba32d0d25cd25
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -189,10 +219,17 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.main" />
+<<<<<<< HEAD
         <item itemvalue="Python.cadProdutosDB" />
         <item itemvalue="Python.consultaProdutosMain" />
         <item itemvalue="Python.UsuariosMain" />
         <item itemvalue="Python.cadProdutosMain" />
+=======
+        <item itemvalue="Python.consultaProdutosMain" />
+        <item itemvalue="Python.home_menus" />
+        <item itemvalue="Python.EstoqueMain" />
+        <item itemvalue="Python.comandos_login" />
+>>>>>>> bb56540a989b8be708487bff9e0ba32d0d25cd25
       </list>
     </recent_temporary>
   </component>
@@ -219,11 +256,20 @@
       <workItem from="1593370874733" duration="202000" />
       <workItem from="1593380390637" duration="15524000" />
       <workItem from="1593455881076" duration="7329000" />
+<<<<<<< HEAD
+      <workItem from="1593550790165" duration="3927000" />
+      <workItem from="1593693344850" duration="4153000" />
+=======
       <workItem from="1593550790165" duration="4873000" />
       <workItem from="1593622666887" duration="9282000" />
       <workItem from="1593653460048" duration="4447000" />
       <workItem from="1593686211880" duration="4209000" />
+<<<<<<< HEAD
       <workItem from="1593704257304" duration="4166000" />
+=======
+      <workItem from="1593704257304" duration="67000" />
+>>>>>>> master
+>>>>>>> bb56540a989b8be708487bff9e0ba32d0d25cd25
     </task>
     <task id="LOCAL-00001" summary="Voltada a versão">
       <created>1592833785010</created>
@@ -308,15 +354,60 @@
       <screen x="72" y="27" width="1294" height="741" />
     </state>
     <state x="177" y="55" key="#com.intellij.execution.impl.EditConfigurationsDialog/72.27.1294.741@72.27.1294.741" timestamp="1593136787910" />
-    <state x="355" y="275" width="646" height="189" key="#com.jetbrains.python.refactoring.move.PyMakeFunctionTopLevelDialog" timestamp="1593689077219">
-      <screen x="0" y="27" width="1366" height="679" />
-    </state>
-    <state x="355" y="275" width="646" height="189" key="#com.jetbrains.python.refactoring.move.PyMakeFunctionTopLevelDialog/0.27.1366.679@0.27.1366.679" timestamp="1593689077219" />
     <state x="466" y="124" width="424" height="491" key="FileChooserDialogImpl" timestamp="1593455875281">
       <screen x="0" y="27" width="1366" height="679" />
     </state>
     <state x="466" y="124" width="424" height="491" key="FileChooserDialogImpl/0.27.1366.679@0.27.1366.679" timestamp="1593455875281" />
+<<<<<<< HEAD
     <state width="1320" height="151" key="GridCell.Tab.0.bottom" timestamp="1593712225516">
+=======
+<<<<<<< HEAD
+    <state width="1246" height="135" key="GridCell.Tab.0.bottom" timestamp="1593706906620">
+      <screen x="72" y="27" width="1292" height="629" />
+    </state>
+    <state width="1320" height="151" key="GridCell.Tab.0.bottom/0.27.1366.679@0.27.1366.679" timestamp="1593556214928" />
+    <state width="1246" height="135" key="GridCell.Tab.0.bottom/72.27.1292.629@72.27.1292.629" timestamp="1593706906620" />
+    <state width="1248" height="172" key="GridCell.Tab.0.bottom/72.27.1294.741@72.27.1294.741" timestamp="1593138893602" />
+    <state width="1246" height="135" key="GridCell.Tab.0.center" timestamp="1593706906618">
+      <screen x="72" y="27" width="1292" height="629" />
+    </state>
+    <state width="1320" height="151" key="GridCell.Tab.0.center/0.27.1366.679@0.27.1366.679" timestamp="1593556214927" />
+    <state width="1246" height="135" key="GridCell.Tab.0.center/72.27.1292.629@72.27.1292.629" timestamp="1593706906618" />
+    <state width="1248" height="172" key="GridCell.Tab.0.center/72.27.1294.741@72.27.1294.741" timestamp="1593138893601" />
+    <state width="1246" height="135" key="GridCell.Tab.0.left" timestamp="1593706906616">
+      <screen x="72" y="27" width="1292" height="629" />
+    </state>
+    <state width="1320" height="151" key="GridCell.Tab.0.left/0.27.1366.679@0.27.1366.679" timestamp="1593556214926" />
+    <state width="1246" height="135" key="GridCell.Tab.0.left/72.27.1292.629@72.27.1292.629" timestamp="1593706906616" />
+    <state width="1248" height="172" key="GridCell.Tab.0.left/72.27.1294.741@72.27.1294.741" timestamp="1593138893600" />
+    <state width="1246" height="135" key="GridCell.Tab.0.right" timestamp="1593706906619">
+      <screen x="72" y="27" width="1292" height="629" />
+    </state>
+    <state width="1320" height="151" key="GridCell.Tab.0.right/0.27.1366.679@0.27.1366.679" timestamp="1593556214927" />
+    <state width="1246" height="135" key="GridCell.Tab.0.right/72.27.1292.629@72.27.1292.629" timestamp="1593706906619" />
+    <state width="1248" height="172" key="GridCell.Tab.0.right/72.27.1294.741@72.27.1294.741" timestamp="1593138893602" />
+    <state width="1320" height="190" key="GridCell.Tab.1.bottom" timestamp="1593465906874">
+      <screen x="0" y="27" width="1366" height="679" />
+    </state>
+    <state width="1320" height="190" key="GridCell.Tab.1.bottom/0.27.1366.679@0.27.1366.679" timestamp="1593465906874" />
+    <state width="1248" height="215" key="GridCell.Tab.1.bottom/72.27.1294.741@72.27.1294.741" timestamp="1592874992514" />
+    <state width="1320" height="190" key="GridCell.Tab.1.center" timestamp="1593465906873">
+      <screen x="0" y="27" width="1366" height="679" />
+    </state>
+    <state width="1320" height="190" key="GridCell.Tab.1.center/0.27.1366.679@0.27.1366.679" timestamp="1593465906873" />
+    <state width="1248" height="215" key="GridCell.Tab.1.center/72.27.1294.741@72.27.1294.741" timestamp="1592874992513" />
+    <state width="1320" height="190" key="GridCell.Tab.1.left" timestamp="1593465906873">
+      <screen x="0" y="27" width="1366" height="679" />
+    </state>
+    <state width="1320" height="190" key="GridCell.Tab.1.left/0.27.1366.679@0.27.1366.679" timestamp="1593465906873" />
+    <state width="1248" height="215" key="GridCell.Tab.1.left/72.27.1294.741@72.27.1294.741" timestamp="1592874992513" />
+    <state width="1320" height="190" key="GridCell.Tab.1.right" timestamp="1593465906874">
+      <screen x="0" y="27" width="1366" height="679" />
+    </state>
+    <state width="1320" height="190" key="GridCell.Tab.1.right/0.27.1366.679@0.27.1366.679" timestamp="1593465906874" />
+=======
+    <state width="660" height="190" key="GridCell.Tab.0.bottom" timestamp="1593691023995">
+>>>>>>> bb56540a989b8be708487bff9e0ba32d0d25cd25
       <screen x="0" y="27" width="1366" height="679" />
     </state>
     <state width="1320" height="151" key="GridCell.Tab.0.bottom/0.27.1366.679@0.27.1366.679" timestamp="1593712225516" />
@@ -355,6 +446,7 @@
       <screen x="0" y="27" width="1366" height="679" />
     </state>
     <state width="660" height="190" key="GridCell.Tab.1.right/0.27.1366.679@0.27.1366.679" timestamp="1593691023996" />
+>>>>>>> master
     <state width="1248" height="215" key="GridCell.Tab.1.right/72.27.1294.741@72.27.1294.741" timestamp="1592874992514" />
     <state width="263" height="500" key="HiddenNamespacesPopup" timestamp="1593020830736">
       <screen x="72" y="27" width="1294" height="741" />
@@ -383,8 +475,16 @@
     <state x="515" y="139" width="325" height="462" key="refactoring.ChangeSignatureDialog/0.27.1366.679@0.27.1366.679" timestamp="1593292254569" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+<<<<<<< HEAD
+    <SUITE FILE_PATH="coverage/Projeto_Estoque$home_menus.coverage" NAME="home_menus Coverage Results" MODIFIED="1593362997345" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Interface" />
+    <SUITE FILE_PATH="coverage/Projeto_Estoque$cadProdutosMain.coverage" NAME="cadProdutosMain Coverage Results" MODIFIED="1593294685393" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Interface" />
+    <SUITE FILE_PATH="coverage/Projeto_Estoque$UsuariosMain.coverage" NAME="UsuariosMain Coverage Results" MODIFIED="1593383175616" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Interface" />
+    <SUITE FILE_PATH="coverage/Projeto_Estoque$teste.coverage" NAME="teste Coverage Results" MODIFIED="1593465806239" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Interface" />
+    <SUITE FILE_PATH="coverage/Projeto_Estoque$cad_usuarios.coverage" NAME="cad_usuarios Coverage Results" MODIFIED="1593019593611" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Interface" />
+=======
     <SUITE FILE_PATH="coverage/Projeto_Estoque$teste.coverage" NAME="teste Coverage Results" MODIFIED="1593625205991" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Interface" />
     <SUITE FILE_PATH="coverage/Projeto_Estoque$UsuariosMain.coverage" NAME="UsuariosMain Coverage Results" MODIFIED="1593686772811" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Interface" />
+<<<<<<< HEAD
     <SUITE FILE_PATH="coverage/Projeto_Estoque$main.coverage" NAME="main Coverage Results" MODIFIED="1593712225489" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Interface" />
     <SUITE FILE_PATH="coverage/Projeto_Estoque$comandos_login.coverage" NAME="comandos_login Coverage Results" MODIFIED="1592951386238" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Interface" />
     <SUITE FILE_PATH="coverage/Projeto_Estoque$cadProdutosDB.coverage" NAME="cadProdutosDB Coverage Results" MODIFIED="1593711431231" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Banco" />
@@ -393,5 +493,18 @@
     <SUITE FILE_PATH="coverage/Projeto_Estoque$cad_usuarios.coverage" NAME="cad_usuarios Coverage Results" MODIFIED="1593019593611" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Interface" />
     <SUITE FILE_PATH="coverage/Projeto_Estoque$cadProdutosMain.coverage" NAME="cadProdutosMain Coverage Results" MODIFIED="1593629432957" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Interface" />
     <SUITE FILE_PATH="coverage/Projeto_Estoque$home_menus.coverage" NAME="home_menus Coverage Results" MODIFIED="1593628898267" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Interface" />
+=======
+    <SUITE FILE_PATH="coverage/Projeto_Estoque$main.coverage" NAME="main Coverage Results" MODIFIED="1593704298859" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Interface" />
+>>>>>>> master
+    <SUITE FILE_PATH="coverage/Projeto_Estoque$comandos_login.coverage" NAME="comandos_login Coverage Results" MODIFIED="1592951386238" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Interface" />
+    <SUITE FILE_PATH="coverage/Projeto_Estoque_repositorio$UsuariosMain.coverage" NAME="UsuariosMain Coverage Results" MODIFIED="1593694412580" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Interface" />
+    <SUITE FILE_PATH="coverage/Projeto_Estoque_repositorio$comandos_login.coverage" NAME="comandos_login Coverage Results" MODIFIED="1593694728687" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Interface" />
+    <SUITE FILE_PATH="coverage/Projeto_Estoque_repositorio$EstoqueMain.coverage" NAME="EstoqueMain Coverage Results" MODIFIED="1593695253153" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Interface" />
+    <SUITE FILE_PATH="coverage/Projeto_Estoque$controller.coverage" NAME="controller Coverage Results" MODIFIED="1593465744564" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Interface" />
+    <SUITE FILE_PATH="coverage/Projeto_Estoque_repositorio$consultaProdutosMain.coverage" NAME="consultaProdutosMain Coverage Results" MODIFIED="1593695709487" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Interface" />
+    <SUITE FILE_PATH="coverage/Projeto_Estoque$main.coverage" NAME="main Coverage Results" MODIFIED="1593555489165" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Interface" />
+    <SUITE FILE_PATH="coverage/Projeto_Estoque_repositorio$home_menus.coverage" NAME="home_menus Coverage Results" MODIFIED="1593695691834" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Interface" />
+    <SUITE FILE_PATH="coverage/Projeto_Estoque_repositorio$main.coverage" NAME="main Coverage Results" MODIFIED="1593696909340" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Interface" />
+>>>>>>> bb56540a989b8be708487bff9e0ba32d0d25cd25
   </component>
 </project>
