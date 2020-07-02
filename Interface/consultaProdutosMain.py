@@ -12,7 +12,7 @@ class ConsultaProdutos(QMainWindow, consultaProdutos_.Ui_MainWindow):
         self.actionsair.triggered.connect(self.voltar)
         self.btnNovo.clicked.connect(self.janela_cadastro)
         self.btnVoltar.clicked.connect(self.voltar)
-        self.cons_prod = cadProdutosDB.CadProdutosDB("estoque.db")
+        #self.cons_prod = cadProdutosDB.CadProdutosDB("estoque.db")
 
 
     def pesquisar(self, id = None):
