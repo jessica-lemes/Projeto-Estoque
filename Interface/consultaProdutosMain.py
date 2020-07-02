@@ -21,6 +21,7 @@ class ConsultaProdutos(QMainWindow, consultaProdutos_.Ui_MainWindow):
         if self.lineEdit.text() == '':
             cons_prod = cadProdutosDB.CadProdutosDB()
             resultado = cons_prod.selecionar_todos()
+            print(resultado)
             for item in resultado:
                 for colItem in item:
                     newItem = QTableWidgetItem(colItem)

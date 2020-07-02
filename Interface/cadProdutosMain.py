@@ -17,10 +17,11 @@ class CadProdutos(QMainWindow, cadProdutos.Ui_cadProdutos):
         self.janela_principal = parent
 
     def cadastra(self):
-        self.cad_produtos = CadProdutos(self)
+        self.cad_produtos = CadProdutosDB()
+        self.cad_prod = CadProdutos()
         if self.lineNome.text()== "" or self.lineDescricao.text() == "" or self.lineQtd.text() == ""\
                 or self.lineQtdMin.text() == "" or self.lineValor.text() == "":
-            QMessageBox.about(self.cad_produtos, "Erro", "Preecha todos os campos")
+            QMessageBox.about(self.cad_prod, "Erro", "Preecha todos os campos")
         else:
             nome = self.lineNome.text()
             descricao = self.lineDescricao.text()
@@ -28,8 +29,8 @@ class CadProdutos(QMainWindow, cadProdutos.Ui_cadProdutos):
             qtde_minimo = self.lineQtdMin.text()
             valor_produto = self.lineValor.text()
 
-            self.cad_prod.cadastrar(nome, descricao, qtde_estoque, qtde_minimo, valor_produto)
-            QMessageBox.about(self.cad_produtos, "Cadastro", "Cadastrado com sucesso!")
+            self.cad_produtos.cadastrar(nome, descricao, qtde_estoque, qtde_minimo, valor_produto)
+            QMessageBox.about(self.cad_prod, "Cadastro", "Cadastrado com sucesso!")
             self.limpar()
 
     def voltar(self):
