@@ -7,6 +7,7 @@ class CadProdutosDB:
         self.conexao = sqlite3.connect('estoque.db')
         self.cursor = self.conexao.cursor()
         self.resultado = []
+
     def cadastrar(self, nome, descricao, qtde_estoque, qtde_minimo, valor_produto):
 
         query = "INSERT OR IGNORE INTO produtos (nome, descricao, qtde_estoque, qtde_minimo, valor_produto)" \
@@ -28,13 +29,14 @@ class CadProdutosDB:
     def selecionar(self, nome):
         query = "SELECT * FROM produtos WHERE nome = ?"
         self.cursor.execute(query, (nome,))
+        return self.cursor.fetchall()
         self.conexao.close()
         self.cursor.close()
 
     def selecionar_todos(self):
         query = "SELECT * FROM produtos"
         self.resultado = self.cursor.execute(query)
-        return self.resultado
+        return self.resultado.fetchall()
         self.conexao.close()
         self.cursor.close()
 
