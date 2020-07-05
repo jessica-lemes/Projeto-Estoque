@@ -29,7 +29,7 @@ class CadProdutosDB:
     def selecionar(self, nome):
         query = "SELECT * FROM produtos WHERE nome = ?"
         self.cursor.execute(query, (nome,))
-        return self.cursor.fetchall()
+        return self.cursor
         self.conexao.close()
         self.cursor.close()
 
