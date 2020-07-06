@@ -173,7 +173,7 @@
      <rect>
       <x>80</x>
       <y>100</y>
-      <width>261</width>
+      <width>141</width>
       <height>25</height>
      </rect>
     </property>
@@ -194,7 +194,7 @@
    <widget class="QPushButton" name="btnPesquisar">
     <property name="geometry">
      <rect>
-      <x>350</x>
+      <x>230</x>
       <y>100</y>
       <width>89</width>
       <height>25</height>
@@ -207,7 +207,7 @@
    <widget class="QPushButton" name="btnNovo">
     <property name="geometry">
      <rect>
-      <x>450</x>
+      <x>430</x>
       <y>100</y>
       <width>101</width>
       <height>25</height>
@@ -220,7 +220,7 @@
    <widget class="QPushButton" name="btnVoltar">
     <property name="geometry">
      <rect>
-      <x>560</x>
+      <x>540</x>
       <y>100</y>
       <width>89</width>
       <height>25</height>
@@ -228,6 +228,19 @@
     </property>
     <property name="text">
      <string>Voltar</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btnEditar">
+    <property name="geometry">
+     <rect>
+      <x>330</x>
+      <y>100</y>
+      <width>89</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Editar</string>
     </property>
    </widget>
   </widget>
