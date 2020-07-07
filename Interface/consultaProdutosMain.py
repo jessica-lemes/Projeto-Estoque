@@ -1,8 +1,6 @@
-from PyQt5 import QtCore, Qt, QtWidgets, QtGui
-from PyQt5.QtCore import QAbstractTableModel
 from PyQt5.QtWidgets import QMainWindow, QMessageBox
 from PyQt5.Qt import QTableWidgetItem
-from Interface import consultaProdutos_, cadProdutosMain
+from Interface import consultaProdutos_, cadProdutosMain, editaProdutosMain
 from Banco import cadProdutosDB
 
 
@@ -16,42 +14,39 @@ class ConsultaProdutos(QMainWindow, consultaProdutos_.Ui_MainWindow):
         self.btnNovo.clicked.connect(self.janela_cadastro)
         self.btnVoltar.clicked.connect(self.voltar)
         self.btnEditar.clicked.connect(self.editar)
-
-    # def pesquisar(self):
-    #     cons_prod = cadProdutosDB.CadProdutosDB()
-    #     resultado = cons_prod.selecionar_todos()
-    #
-    #     self.model = TableModel(resultado)
-    #     self.tabelaConsultaProdutos.setModel(self.model)
-    #     self.setCentralWidget(self.tabelaConsultaProdutos)
+        self.btnLimpar.clicked.connect(self.limpar)
+        self.cons_prod = cadProdutosDB.CadProdutosDB()
+        self.resultado = self.cons_prod.selecionar_todos()
+        self.obj_edita = editaProdutosMain.EditaProdutosMain()
 
     def pesquisar(self):
-        l=0
-        c=0
+        l = 0
+        c = 0
         if self.lineEdit.text() == '':
-            cons_prod = cadProdutosDB.CadProdutosDB()
-            resultado = cons_prod.selecionar_todos()
-            print(resultado)
-            for item in resultado:
+            for item in self.resultado:
                 for colItem in item:
                     newItem = QTableWidgetItem(str(colItem))
                     self.tabelaConsultaProdutos.setItem(l, c, newItem)
                     c += 1
                 l += 1
         elif self.lineEdit.text() != '':
-            cons_prod = cadProdutosDB.CadProdutosDB()
-            resultado = cons_prod.selecionar(self.lineEdit.text())
+            resultado = self.cons_prod.selecionar(self.lineEdit.text())
             for item in resultado:
                 for colItem in item:
                     newItem = QTableWidgetItem(str(colItem))
                     self.tabelaConsultaProdutos.setItem(l,c, newItem)
                     c += 1
                 l += 1
-        else:
+        elif self.cons_prod.selecionar(self.lineEdit.text()) == None:
             QMessageBox.about(ConsultaProdutos, "Erro", "Não encontrado")
 
-    def editar(self, nome, descricao, qtde_estoque, qtd_minimo, valor):
-        pass
+    def editar(self):
+        lista = []
+        row = self.tabelaConsultaProdutos.currentRow()
+        nome = self.tabelaConsultaProdutos.item(row, 1).text()
+        lista = self.cons_prod.selecionar(nome)
+        self.obj_edita.show()
+        return lista
 
 
 
@@ -67,18 +62,5 @@ class ConsultaProdutos(QMainWindow, consultaProdutos_.Ui_MainWindow):
     def voltar(self):
         ConsultaProdutos.close(self)
 
-
-# class TableModel(QtCore.QAbstractTableModel):
-#     def __init__(self, dados):
-#         super(TableModel, self).__init__()
-#         self.dados = dados
-#
-#     def data(self, index, role):
-#         if role == Qt.DisplayRole:
-#             return self.dados[index.row()][index.column()]
-#
-#     def rowCount(self, index):
-#         return self.dados.count(self.dados[0])
-#
-#     def columnCount(self, index):
-#         return self.dados.count(self.dados[0])
+    def limpar(self):
+        self.tabelaConsultaProdutos.clearContents()

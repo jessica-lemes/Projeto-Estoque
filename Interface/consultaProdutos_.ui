@@ -243,6 +243,19 @@
      <string>Editar</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="btnLimpar">
+    <property name="geometry">
+     <rect>
+      <x>230</x>
+      <y>70</y>
+      <width>121</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Limpar pesquisa</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
