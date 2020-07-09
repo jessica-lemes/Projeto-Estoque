@@ -1,196 +1,225 @@
 from PyQt5 import uic, QtWidgets
-from PyQt5.QtWidgets import QMessageBox
+from PyQt5.QtWidgets import QMainWindow, QMessageBox
 from PyQt5.Qt import QTableWidgetItem
+from Interface import consultarEstoque, consultarUsuarios,cadUsuarios, editarUsuarios, Home
 from Banco.estoque_db_querys_usuarios import Querys
-from Banco.estoque_db_querys_autenticacao import Querys_Autenticacao
 
 app=QtWidgets.QApplication([])
 telaHome=uic.loadUi("Home.ui")
 
 comandos_db_usuarios = Querys('estoque.db')
 
-def cad_voltar():
-    telaCadUsuarios.close()
-    telaHome.show()
+class ConsultaUsuarios(QMainWindow, consultarUsuarios.Ui_MainWindow):
+    def __init__(self, parent=None):
 
-def cons_voltar():
-    telaConsUsuarios.close()
-    telaHome.show()
+        super().__init__(parent)
+        super().setupUi(self)
 
-def edit_voltar():
-    telaEditUsuarios.close()
-    telaConsUsuarios.show()
+        self.btnVoltar.clicked.connect(self.cons_voltar)
+        self.btnNovo.clicked.connect(self.botao_novocad)
+        self.btnPesquisar.clicked.connect(self.botao_pesquisar)
+        self.btnEditar.clicked.connect(self.botao_editar)
+        self.btnExcluir.clicked.connect(self.botao_excluir)
+        self.actionSair.triggered.connect(self.cons_voltar)
+        self.janela_principal = parent
 
-def cad_limpar():
-    telaCadUsuarios.lineNome.setText("")
-    telaCadUsuarios.lineCpf.setText("")
-    telaCadUsuarios.lineFuncao.setText("")
-    telaCadUsuarios.lineEmail.setText("")
-    telaCadUsuarios.lineSenha.setText("")
-    telaCadUsuarios.rbtnAtivo.setChecked(True)
-    telaCadUsuarios.rbtnUsuario.setChecked(True)
+    def cons_voltar(self):
+        self.close()
 
-def edit_limpar():
-    telaEditUsuarios.lineNome.setText("")
-    telaEditUsuarios.lineCpf.setText("")
-    telaEditUsuarios.lineFuncao.setText("")
-    telaEditUsuarios.lineEmail.setText("")
-    telaEditUsuarios.lineSenha.setText("")
-    telaEditUsuarios.rbtnAtivo.setChecked(True)
-    telaEditUsuarios.rbtnUsuario.setChecked(True)
-    telaEditUsuarios.labelId.setText("")
+    def botao_novocad(self):
+        #self.close()
+        tela_cad_usuarios = CadastraUsuarios(self)
+        tela_cons_usuarios = ConsultaUsuarios(self)
+        #tela_cons_usuarios.close()
+        tela_cad_usuarios.show()
 
-def botao_novocad():
-    telaConsUsuarios.close()
-    telaCadUsuarios.show()
+    def botao_pesquisar(self):
+        self.tableWidget.clearContents()
 
-def botao_editar():
-    row = telaConsUsuarios.tableWidget.currentRow()
-    id = telaConsUsuarios.tableWidget.item(row, 0).text()
-    lista = buscar_id_bd(int(id))
+        nome = self.lineNome.text()
+        resultado = self.pesquisar_banco(nome)
+        l = 0
+        c = 0
+        for item in resultado:
+            c = 0
+            for colItem in item:
+                newItem = QTableWidgetItem(str(colItem))
+                self.tableWidget.setItem(l, c, newItem)
+                c += 1
+            l += 1
+        self.lineNome.setText('')
 
-    telaEditUsuarios.lineNome.setText(str(lista[0][1]))
-    telaEditUsuarios.lineCpf.setText(str(lista[0][2]))
-    telaEditUsuarios.lineFuncao.setText(str(lista[0][3]))
-    telaEditUsuarios.lineEmail.setText(str(lista[0][4]))
-    telaEditUsuarios.lineSenha.setText(str(lista[0][5]))
-    if str(lista[0][6]) == "Ativo":
-        telaEditUsuarios.rbtnAtivo.setChecked(True)
-    else:
-        telaEditUsuarios.rbtnInativo.setChecked(True)
-    if str(lista[0][7]) == "Usuário":
-        telaEditUsuarios.rbtnUsuario.setChecked(True)
-    else:
-        telaEditUsuarios.rbtnAdmin.setChecked(True)
+    def pesquisar_banco(self, nome):
+        pesquisa = Querys.buscar_banco(Querys('estoque.db'), nome)
+        return pesquisa
 
-    telaEditUsuarios.labelId.setText(str(lista[0][0]))
+    def buscar_id_bd(self, id):
+        lista = Querys.selecionar_id(comandos_db_usuarios, id)
+        return lista
 
-    telaConsUsuarios.close()
-    telaEditUsuarios.show()
+    def botao_editar(self):
 
-def buscar_id_bd(id):
-    lista = Querys.selecionar_id(comandos_db_usuarios, id)
-    return lista
+        row = self.tableWidget.currentRow()
+        id = self.tableWidget.item(row, 0).text()
+        lista = self.buscar_id_bd(int(id))
 
-def botao_excluir():
-    row = telaConsUsuarios.tableWidget.currentRow()
-    id = telaConsUsuarios.tableWidget.item(row, 0).text()
-    Querys.excluir(comandos_db_usuarios, id)
-    QMessageBox.about(telaConsUsuarios, "Mensagem", "Cadastro excluído com sucesso.")
-    telaConsUsuarios.tableWidget.clearContents()
+        tela_editar = EditarUsuario(self)
+        tela_editar.show()
+        tela_editar.seta_linhas(lista)
+        tela_cons_usuarios = ConsultaUsuarios(self)
+        tela_cons_usuarios.close()
+        self.close()
 
-def seleciona_linha(selection: list):
-    listSelection = []
-    for l in selection:
-        telaConsUsuarios.tableWidget.selectedRow(l)
-        listSelection.append()
-        return listSelection
+    def botao_excluir(self):
+        row = self.tableWidget.currentRow()
+        id = self.tableWidget.item(row, 0).text()
+        Querys.excluir(comandos_db_usuarios, id)
+        cons_usuarios = ConsultaUsuarios(self)
+        QMessageBox.about(cons_usuarios, "Mensagem", "Cadastro excluído com sucesso.")
+        self.tableWidget.clearContents()
 
-def cadastrar():
-    nome = telaCadUsuarios.lineNome.text()
-    cpf = telaCadUsuarios.lineCpf.text()
-    funcao = telaCadUsuarios.lineFuncao.text()
-    email = telaCadUsuarios.lineEmail.text()
-    senha = telaCadUsuarios.lineSenha.text()
-    if telaCadUsuarios.rbtnAtivo.isChecked():
-        situacao = "Ativo"
-    else:
-        situacao = "Inativo"
-    if telaCadUsuarios.rbtnUsuario.isChecked():
-        tipo_usuario = "Usuário"
-    else:
-        tipo_usuario = "Administrador"
-    cadastrar_banco(nome,cpf,email,senha,funcao,situacao,tipo_usuario)
+    def seleciona_linha(self, selection: list):
+        listSelection = []
+        for l in selection:
+            self.consultarUsuarios.tableWidget.selectedRow(l)
+            listSelection.append()
+            return listSelection
 
-def botao_editar_usuario():
-    nome = telaEditUsuarios.lineNome.text()
-    cpf = telaEditUsuarios.lineCpf.text()
-    funcao = telaEditUsuarios.lineFuncao.text()
-    email = telaEditUsuarios.lineEmail.text()
-    senha = telaEditUsuarios.lineSenha.text()
-    if telaEditUsuarios.rbtnAtivo.isChecked():
-        situacao = "Ativo"
-    else:
-        situacao = "Inativo"
-    if telaEditUsuarios.rbtnUsuario.isChecked():
-        tipo_usuario = "Usuário"
-    else:
-        tipo_usuario = "Administrador"
-    id = telaEditUsuarios.labelId.text()
+class CadastraUsuarios(QMainWindow, cadUsuarios.Ui_cadUsuarios):
+    def __init__(self, parent=None):
 
-    editar_banco(id, nome, cpf, email, senha, funcao, situacao, tipo_usuario)
+        super().__init__(parent)
+        super().setupUi(self)
 
-def cadastrar_banco(nome, cpf, email, senha,funcao, situacao,tipo_usuario):
+        self.btnVoltar.clicked.connect(self.cad_voltar)
+        self.btnCadastrar.clicked.connect(self.cadastrar)
+        self.btnLimpar.clicked.connect(self.cad_limpar)
 
-    if nome == "" or cpf == "" or email == "" or senha == "" or funcao == "":
-        QMessageBox.about(telaCadUsuarios,"Alerta","Obrigatório o preenchimento de todos os campos.")
-    else:
-        if len(cpf) < 11:
-            QMessageBox.about(telaCadUsuarios, "Alerta", "CPF Inválido.")
+        self.actionSair.triggered.connect(self.cad_voltar)
+        self.janela_principal = parent
+
+    def cad_voltar(self):
+        self.close()
+
+    def cad_limpar(self):
+        self.lineNome.setText("")
+        self.lineCpf.setText("")
+        self.lineFuncao.setText("")
+        self.lineEmail.setText("")
+        self.lineSenha.setText("")
+        self.rbtnAtivo.setChecked(True)
+        self.rbtnUsuario.setChecked(True)
+
+    def cadastrar(self):
+        nome = self.lineNome.text()
+        cpf = self.lineCpf.text()
+        funcao = self.lineFuncao.text()
+        email = self.lineEmail.text()
+        senha = self.lineSenha.text()
+        if self.rbtnAtivo.isChecked():
+            situacao = "Ativo"
         else:
-            verifica_existente = Autenticar_Banco(cpf, senha)
-            if verifica_existente != None and verifica_existente != "Erro":
-                QMessageBox.about(telaCadUsuarios, "Alerta", "CPF já cadastrado no banco de dados.")
-            else:
-                Querys.cadastrar(comandos_db_usuarios, nome, cpf, email, senha,funcao, situacao, tipo_usuario)
-                QMessageBox.about(telaCadUsuarios,"Mensagem","Usuário cadastrado com sucesso.")
-                cad_limpar()
-
-def editar_banco(id, nome, cpf, email, senha,funcao, situacao,tipo_usuario):
-    if nome == "" or cpf == "" or email == "" or senha == "" or funcao == "":
-        QMessageBox.about(telaEditUsuarios,"Alerta","Obrigatório o preenchimento de todos os campos.")
-    else:
-        if len(cpf) < 11:
-            QMessageBox.about(telaEditUsuarios, "Alerta", "CPF Inválido.")
+            situacao = "Inativo"
+        if self.rbtnUsuario.isChecked():
+            tipo_usuario = "Usuário"
         else:
-            verifica_existente = Autenticar_Banco(cpf, senha)
-            if verifica_existente != None and verifica_existente != "Erro":
-                QMessageBox.about(telaEditUsuarios, "Alerta", "CPF já cadastrado no banco de dados.")
+            tipo_usuario = "Administrador"
+        self.cadastrar_banco(nome, cpf, email, senha, funcao, situacao, tipo_usuario)
+
+    def cadastrar_banco(self, nome, cpf, email, senha, funcao, situacao, tipo_usuario):
+        tela_cadastrar = CadastraUsuarios(self)
+        if nome == "" or cpf == "" or email == "" or senha == "" or funcao == "":
+            QMessageBox.about(tela_cadastrar, "Alerta", "Obrigatório o preenchimento de todos os campos.")
+        else:
+            if len(cpf) < 11:
+                QMessageBox.about(tela_cadastrar, "Alerta", "CPF Inválido.")
             else:
-                Querys.editar(comandos_db_usuarios, nome, cpf, email, senha,funcao, situacao, tipo_usuario, id)
-                QMessageBox.about(telaEditUsuarios,"Mensagem","Cadastro alterado com sucesso.")
+                verifica_existente = Querys.Verifica_se_existe(comandos_db_usuarios, cpf)
+                if verifica_existente is True and verifica_existente != "Erro":
+                    QMessageBox.about(tela_cadastrar, "Alerta", "CPF já cadastrado no banco de dados.")
+                else:
+                    Querys.cadastrar(comandos_db_usuarios, nome, cpf, email, senha, funcao, situacao, tipo_usuario)
+                    QMessageBox.about(tela_cadastrar, "Mensagem", "Usuário cadastrado com sucesso.")
+                    self.cad_limpar()
 
-def Autenticar_Banco(usuario, senha):
-    cad_encontrado = Querys_Autenticacao.Autenticar(Querys_Autenticacao('estoque.db'),usuario, senha)
-    return cad_encontrado
+class EditarUsuario(QMainWindow, editarUsuarios.Ui_editUsuarios):
 
-def pesquisar_banco(nome):
-    pesquisa = Querys.buscar_banco(Querys('estoque.db'), nome)
-    return pesquisa
+    def __init__(self, parent=None):
 
-def botao_pesquisar():
-    telaConsUsuarios.tableWidget.clearContents()
+        super(EditarUsuario, self).__init__(parent)
+        super().setupUi(self)
 
-    nome = telaConsUsuarios.lineNome.text()
-    resultado = pesquisar_banco(nome)
-    l = 0
-    c = 0
-    for item in resultado:
-        c=0
-        for colItem in item:
-            newItem = QTableWidgetItem(str(colItem))
-            telaConsUsuarios.tableWidget.setItem(l,c,newItem)
-            c += 1
-        l += 1
-    telaConsUsuarios.lineNome.setText('')
+        self.btnVoltar.clicked.connect(self.edit_voltar)
+        self.btnSalvar.clicked.connect(self.botao_editar_usuario)
+        self.btnLimpar.clicked.connect(self.edit_limpar)
 
+        self.actionSair.triggered.connect(self.edit_voltar)
+        self.janela_principal = parent
 
-telaCadUsuarios=uic.loadUi("cadUsuarios.ui")
-telaCadUsuarios.btnVoltar.clicked.connect(cad_voltar)
-telaCadUsuarios.btnLimpar.clicked.connect(cad_limpar)
-telaCadUsuarios.btnCadastrar.clicked.connect(cadastrar)
+    def edit_voltar(self):
+        tela_cons_usuarios = ConsultaUsuarios(self)
+        tela_cons_usuarios.show()
+        self.close()
 
-telaConsUsuarios = uic.loadUi("consultarUsuarios.ui")
-telaConsUsuarios.btnVoltar.clicked.connect(cons_voltar)
-telaConsUsuarios.btnNovo.clicked.connect(botao_novocad)
-telaConsUsuarios.btnPesquisar.clicked.connect(botao_pesquisar)
-telaConsUsuarios.btnEditar.clicked.connect(botao_editar)
-telaConsUsuarios.btnExcluir.clicked.connect(botao_excluir)
+    def edit_limpar(self):
+        self.lineNome.setText("")
+        self.lineCpf.setText("")
+        self.lineFuncao.setText("")
+        self.lineEmail.setText("")
+        self.lineSenha.setText("")
+        self.rbtnAtivo.setChecked(True)
+        self.rbtnUsuario.setChecked(True)
+        self.labelId.setText("")
 
-telaEditUsuarios=uic.loadUi("editarUsuarios.ui")
-telaEditUsuarios.btnVoltar.clicked.connect(edit_voltar)
-telaEditUsuarios.btnLimpar.clicked.connect(edit_limpar)
-telaEditUsuarios.btnSalvar.clicked.connect(botao_editar_usuario)
+    def seta_linhas(self, lista):
 
-telaConsUsuarios.show()
-app.exec()
+        self.lineNome.setText(str(lista[0][1]))
+        self.lineCpf.setText(str(lista[0][2]))
+        self.lineFuncao.setText(str(lista[0][3]))
+        self.lineEmail.setText(str(lista[0][4]))
+        self.lineSenha.setText(str(lista[0][5]))
+        if str(lista[0][6]) == "Ativo":
+            self.rbtnAtivo.setChecked(True)
+        else:
+            self.rbtnInativo.setChecked(True)
+        if str(lista[0][7]) == "Usuário":
+            self.rbtnUsuario.setChecked(True)
+        else:
+            self.rbtnAdmin.setChecked(True)
+
+        self.labelId.setText(str(lista[0][0]))
+
+    def botao_editar_usuario(self):
+        nome = self.lineNome.text()
+        cpf = self.lineCpf.text()
+        funcao = self.lineFuncao.text()
+        email = self.lineEmail.text()
+        senha = self.lineSenha.text()
+        if self.rbtnAtivo.isChecked():
+            situacao = "Ativo"
+        else:
+            situacao = "Inativo"
+        if self.rbtnUsuario.isChecked():
+            tipo_usuario = "Usuário"
+        else:
+            tipo_usuario = "Administrador"
+        id = self.labelId.text()
+
+        self.editar_banco(id, nome, cpf, email, senha, funcao, situacao, tipo_usuario)
+
+    def editar_banco(self, id, nome, cpf, email, senha,funcao, situacao,tipo_usuario):
+        tela_editar = EditarUsuario(self)
+
+        if nome == "" or cpf == "" or email == "" or senha == "" or funcao == "":
+            QMessageBox.about(tela_editar,"Alerta","Obrigatório o preenchimento de todos os campos.")
+        else:
+            if len(cpf) < 11:
+                QMessageBox.about(tela_editar, "Alerta", "CPF Inválido.")
+            else:
+                verifica_existente = Querys.Verifica_se_existe(comandos_db_usuarios, cpf)
+                if verifica_existente is True and verifica_existente != "Erro":
+                    QMessageBox.about(tela_editar, "Alerta", "CPF já cadastrado no banco de dados.")
+                else:
+                    Querys.editar(comandos_db_usuarios, nome, cpf, email, senha,funcao, situacao, tipo_usuario, id)
+                    QMessageBox.about(tela_editar,"Mensagem","Cadastro alterado com sucesso.")
+                    self.edit_limpar()

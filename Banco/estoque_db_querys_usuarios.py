@@ -1,6 +1,5 @@
 import sqlite3
 
-
 class Querys:
 
     def __init__(self, banco):
@@ -8,6 +7,8 @@ class Querys:
         self.cursor = self.conexao.cursor()
 
     def cadastrar(self, nome, cpf, email, senha, funcao, situacao, tipo_usuario):
+        self.conexao = sqlite3.connect('estoque.db')
+        self.cursor = self.conexao.cursor()
 
         self.conexao = sqlite3.connect('estoque.db', timeout=10)
         self.cursor = self.conexao.cursor()
@@ -20,6 +21,9 @@ class Querys:
 
 
     def editar(self, nome, cpf, email, senha=None, funcao=None, situacao=None, tipo_usuario=None, id_usuario=None):
+        self.conexao = sqlite3.connect('estoque.db')
+        self.cursor = self.conexao.cursor()
+
         try:
 
             query = "UPDATE OR IGNORE usuarios SET nome = ?, cpf= ?, email = ?, senha = ?, funcao =?, situacao=?, tipoUsuario=?" \
@@ -34,6 +38,9 @@ class Querys:
 
 
     def selecionar(self, nome):
+        self.conexao = sqlite3.connect('estoque.db')
+        self.cursor = self.conexao.cursor()
+
         query = "SELECT * FROM usuarios WHERE nome = %s"
         self.cursor.execute(query, (nome,))
 
@@ -41,6 +48,9 @@ class Querys:
         self.cursor.close()
 
     def selecionar_cpf(self, cpf):
+        self.conexao = sqlite3.connect('estoque.db')
+        self.cursor = self.conexao.cursor()
+
         query = "SELECT * FROM usuarios WHERE cpf = ?"
         self.cursor.execute(query, (cpf,))
 
@@ -48,6 +58,9 @@ class Querys:
         self.cursor.close()
 
     def selecionar_id(self, id):
+        self.conexao = sqlite3.connect('estoque.db')
+        self.cursor = self.conexao.cursor()
+
         try:
             query = "SELECT * FROM usuarios WHERE idUsuario = ?"
             retorno = self.cursor.execute(query,(id,))
@@ -63,6 +76,9 @@ class Querys:
         self.cursor.close()
 
     def selecionar_todos(self):
+        self.conexao = sqlite3.connect('estoque.db')
+        self.cursor = self.conexao.cursor()
+
         query = "SELECT * FROM usuarios"
         self.cursor.execute(query)
         if self.cursor.fetchall():
@@ -74,12 +90,18 @@ class Querys:
 
 
     def excluir(self, id):
+        self.conexao = sqlite3.connect('estoque.db')
+        self.cursor = self.conexao.cursor()
+
         query = "DELETE FROM usuarios WHERE idUsuario = ?"
         self.cursor.execute(query, (id,))
         self.conexao.commit()
         self.conexao.close()
 
     def buscar_banco(self, nome):
+        self.conexao = sqlite3.connect('estoque.db')
+        self.cursor = self.conexao.cursor()
+
         nome = '%'+nome+'%'
         query = "select * from usuarios where nome like ?"
         try:
@@ -95,7 +117,24 @@ class Querys:
         except Exception as e:
             return "Erro"
 
+    def Verifica_se_existe(self, cpf):
 
+        self.conexao = sqlite3.connect('estoque.db')
+        self.cursor = self.conexao.cursor()
+
+        query = "select * from usuarios where CPF = ?"
+        try:
+            self.cursor.execute(query, (cpf,))
+            if self.cursor.fetchall():
+                return True
+            else:
+                return False
+
+            self.cursor.close()
+            self.conexao.close()
+
+        except Exception as e:
+            return "Erro"
 
 
 if __name__ == '__main__':
