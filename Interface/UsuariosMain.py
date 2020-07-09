@@ -5,7 +5,6 @@ from Interface import consultarEstoque, consultarUsuarios,cadUsuarios, editarUsu
 from Banco.estoque_db_querys_usuarios import Querys
 
 app=QtWidgets.QApplication([])
-telaHome=uic.loadUi("Home.ui")
 
 comandos_db_usuarios = Querys('estoque.db')
 
@@ -27,10 +26,7 @@ class ConsultaUsuarios(QMainWindow, consultarUsuarios.Ui_MainWindow):
         self.close()
 
     def botao_novocad(self):
-        #self.close()
         tela_cad_usuarios = CadastraUsuarios(self)
-        tela_cons_usuarios = ConsultaUsuarios(self)
-        #tela_cons_usuarios.close()
         tela_cad_usuarios.show()
 
     def botao_pesquisar(self):

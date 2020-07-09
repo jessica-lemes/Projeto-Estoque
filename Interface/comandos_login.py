@@ -49,8 +49,3 @@ class Login(QMainWindow,Projeto_Login.Ui_Login):
 
         return autenticado
 
-
-app = QtWidgets.QApplication([])
-#telaLogin=uic.loadUi("Projeto_Login.ui")
-#telaLogin.show()
-app.exec()
