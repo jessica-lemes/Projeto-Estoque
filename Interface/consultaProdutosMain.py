@@ -13,16 +13,19 @@ class ConsultaProdutos(QMainWindow, consultaProdutos_.Ui_MainWindow):
         self.actionsair.triggered.connect(self.voltar)
         self.btnNovo.clicked.connect(self.janela_cadastro)
         self.btnVoltar.clicked.connect(self.voltar)
-        self.btnEditar.clicked.connect(self.editar)
+        self.btnEditar.clicked.connect(self.abre_janela_edit)
         self.btnLimpar.clicked.connect(self.limpar)
         self.cons_prod = cadProdutosDB.CadProdutosDB()
         self.resultado = self.cons_prod.selecionar_todos()
         self.obj_edita = editaProdutosMain.EditaProdutosMain()
+        self.Querys = cadProdutosMain.CadProdutos()
+        self.cad_prod = cadProdutosDB.CadProdutosDB()
+
 
     def pesquisar(self):
-        l = 0
-        c = 0
         if self.lineEdit.text() == '':
+            c = 0
+            l = 0
             for item in self.resultado:
                 for colItem in item:
                     newItem = QTableWidgetItem(str(colItem))
@@ -31,6 +34,8 @@ class ConsultaProdutos(QMainWindow, consultaProdutos_.Ui_MainWindow):
                 l += 1
         elif self.lineEdit.text() != '':
             resultado = self.cons_prod.selecionar(self.lineEdit.text())
+            l=0
+            c=0
             for item in resultado:
                 for colItem in item:
                     newItem = QTableWidgetItem(str(colItem))
@@ -40,15 +45,22 @@ class ConsultaProdutos(QMainWindow, consultaProdutos_.Ui_MainWindow):
         elif self.cons_prod.selecionar(self.lineEdit.text()) == None:
             QMessageBox.about(ConsultaProdutos, "Erro", "Não encontrado")
 
-    def editar(self):
-        lista = []
+    def abre_janela_edit(self):
         row = self.tabelaConsultaProdutos.currentRow()
-        nome = self.tabelaConsultaProdutos.item(row, 1).text()
-        lista = self.cons_prod.selecionar(nome)
+        id = self.tabelaConsultaProdutos.item(row, 0).text()
+        lista = self.buscar_id_bd(int(id,))
+        self.obj_edita.lineEdit.setText(str(lista[0][0]))
+        self.obj_edita.lineNome.setText(str(lista[0][1]))
+        self.obj_edita.lineDescricao.setText(str(lista[0][2]))
+        self.obj_edita.lineQtd.setText(str(lista[0][3]))
+        self.obj_edita.lineQtdMin.setText(str(lista[0][4]))
+        self.obj_edita.lineValor.setText(str(lista[0][5]))
         self.obj_edita.show()
+
+
+    def buscar_id_bd(self, id):
+        lista = self.cad_prod.selecionar(id)
         return lista
-
-
 
     def __getitem__(self, item):
         return self.resultado[item]

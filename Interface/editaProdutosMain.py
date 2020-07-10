@@ -1,42 +1,44 @@
 from PyQt5.QtWidgets import QMainWindow, QMessageBox
-from Interface import editaProdutos, consultaProdutosMain
+from Interface import editaProdutos
 from Banco import cadProdutosDB
+import sqlite3
 
 class EditaProdutosMain(QMainWindow, editaProdutos.Ui_editaProdutos):
 
     def __init__(self, parent=None):
         super().__init__(parent)
         super().setupUi(self)
-        self.btnConfirmar.clicked.connect(self.confirmar_edicao)
+        self.btnConfirmar.clicked.connect(self.editar)
         self.btnVoltar.clicked.connect(self.voltar)
         self.btnLimpar.clicked.connect(self.limpar)
-        self.objCons = consultaProdutosMain.ConsultaProdutos()
-        self.objDB = cadProdutosDB.CadProdutosDB()
-
-
+        self.objDB = cadProdutosDB.CadProdutosDB
 
     def limpar(self):
-        self.tabelaConsultaProdutos.clearContents()
+        self.lineNome.setText("")
+        self.lineDescricao("")
+        self.lineQtd("")
+        self.lineQtdMin("")
+        self.lineValor("")
 
     def voltar(self):
         EditaProdutosMain.close(self)
 
     def editar(self):
-        lista = []
-        lista = self.objCons.editar()
-        nome = self.lineNome.setText(str(lista[0][1]))
-        descricao = self.lineDescricao.lineCpf.setText(str(lista[0][2]))
-        qtd = self.lineQtd.setText(str(lista[0][3]))
-        qtd_min = self.lineQtdMin.setText(str(lista[0][4]))
-        valor = self.lineValor.setText(str(lista[0][5]))
-        self.confirmar_edicao(nome, descricao, qtd, qtd_min, valor)
+        idProduto = self.lineEdit.text()
+        nome = self.lineNome.text()
+        descricao = self.lineDescricao.text()
+        qtd = self.lineQtd.text()
+        qtd_min = self.lineQtdMin.text()
+        valor = self.lineValor.text()
+        self.confirmar_edicao(nome, descricao, qtd, qtd_min, valor, idProduto)
 
-    def confirmar_edicao(self, nome, descricao, qtd, qtd_min, valor):
-        if self.objDB.alterar(nome, descricao, qtd, qtd_min, valor):
+    def confirmar_edicao(self, nome, descricao, qtd, qtd_min, valor, idProduto):
 
-            QMessageBox.about(EditaProdutosMain, "Update", "Alterado com sucesso!")
-        else:
-            QMessageBox.about(EditaProdutosMain, "Erro", "Não foi possível realizar operação")
+        self.objDB.alterar(nome, descricao, qtd, qtd_min, valor, idProduto)
+
+        QMessageBox.about(EditaProdutosMain, "Update", "Alterado com sucesso!")
+
+        QMessageBox.about(EditaProdutosMain, "Erro", "Não foi possível realizar operação")
 
 
         # def cadastra(self):

@@ -18,18 +18,18 @@ class CadProdutosDB:
         self.conexao.close()
 
 
-    def alterar(self, nome, descricao, quantidade, qtd_minima, valor, id):
-        query = "UPDATE OR IGNORE produtos SET nome = %s, descricao= %s, quantidade = %s, qtd_minima" \
-                " = %s, valor=%s WHERE id= %s"
-        self.cursor.execute(query, (nome, descricao, quantidade, qtd_minima, valor, id))
+    def alterar(self, nome, descricao, quantidade, qtd_minima, valor, idProduto=None):
+        query = "UPDATE produtos SET nome = %s, descricao= %s, qtde_estoque = %s, qtde_minimo" \
+                " = %s, valor_produto=%s WHERE idProduto = ?"
+        self.cursor.execute(query, (nome, descricao, quantidade, qtd_minima, valor, int(idProduto),))
         self.conexao.commit()
         self.conexao.close()
         self.cursor.close()
 
-    def selecionar(self, nome):
-        query = "SELECT * FROM produtos WHERE nome = ?"
-        self.cursor.execute(query, (nome,))
-        return self.cursor
+    def selecionar(self, id):
+        query = "SELECT * FROM produtos WHERE idProduto = ?"
+        self.resultado = self.cursor.execute(query, (id,))
+        return self.resultado.fetchall()
         self.conexao.close()
         self.cursor.close()
 
