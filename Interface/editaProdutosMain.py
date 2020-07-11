@@ -11,14 +11,14 @@ class EditaProdutosMain(QMainWindow, editaProdutos.Ui_editaProdutos):
         self.btnConfirmar.clicked.connect(self.editar)
         self.btnVoltar.clicked.connect(self.voltar)
         self.btnLimpar.clicked.connect(self.limpar)
-        self.objDB = cadProdutosDB.CadProdutosDB
+
 
     def limpar(self):
         self.lineNome.setText("")
-        self.lineDescricao("")
-        self.lineQtd("")
-        self.lineQtdMin("")
-        self.lineValor("")
+        self.lineDescricao.setText("")
+        self.lineQtd.setText("")
+        self.lineQtdMin.setText("")
+        self.lineValor.setText("")
 
     def voltar(self):
         EditaProdutosMain.close(self)
@@ -30,15 +30,18 @@ class EditaProdutosMain(QMainWindow, editaProdutos.Ui_editaProdutos):
         qtd = self.lineQtd.text()
         qtd_min = self.lineQtdMin.text()
         valor = self.lineValor.text()
-        self.confirmar_edicao(nome, descricao, qtd, qtd_min, valor, idProduto)
+        objDB = cadProdutosDB.CadProdutosDB
+        objDB.alterar(nome, descricao, qtd, qtd_min, valor, idProduto)
 
-    def confirmar_edicao(self, nome, descricao, qtd, qtd_min, valor, idProduto):
+    # def confirmar_edicao(self, nome, descricao, qtd, qtd_min, valor, idProduto):
+    #     if self.lineNome.text() == "" or self.lineDescricao.text() == "" or self.lineQtd.text() == "" \
+    #        or self.lineQtdMin.text() == "" or self.lineValor.text() == "":
+    #         QMessageBox.about(EditaProdutosMain, "Erro", "Preecha todos os campos")
+    #     else:
+    #         self.objDB.alterar(nome, descricao, qtd, qtd_min, valor, idProduto)
+    #         QMessageBox.about(EditaProdutosMain, "Update", "Alterado com sucesso!")
 
-        self.objDB.alterar(nome, descricao, qtd, qtd_min, valor, idProduto)
-
-        QMessageBox.about(EditaProdutosMain, "Update", "Alterado com sucesso!")
-
-        QMessageBox.about(EditaProdutosMain, "Erro", "Não foi possível realizar operação")
+        # QMessageBox.about(EditaProdutosMain, "Erro", "Não foi possível realizar operação")
 
 
         # def cadastra(self):
