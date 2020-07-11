@@ -25,8 +25,6 @@ class CadProdutosDB:
         cursor.execute(query, (nome, descricao, qtde_estoque, qtde_minimo, valor_produto, idProduto))
         conexao.commit()
 
-
-
     def selecionar(self, id):
         query = "SELECT * FROM produtos WHERE idProduto = ?"
         self.resultado = self.cursor.execute(query, (id,))

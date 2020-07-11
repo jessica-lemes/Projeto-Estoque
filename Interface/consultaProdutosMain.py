@@ -23,10 +23,11 @@ class ConsultaProdutos(QMainWindow, consultaProdutos_.Ui_MainWindow):
 
 
     def pesquisar(self):
+        self.tabelaConsultaProdutos.clearContents()
         if self.lineEdit.text() == '':
-            c = 0
             l = 0
             for item in self.resultado:
+                c = 0
                 for colItem in item:
                     newItem = QTableWidgetItem(str(colItem))
                     self.tabelaConsultaProdutos.setItem(l, c, newItem)
@@ -37,6 +38,7 @@ class ConsultaProdutos(QMainWindow, consultaProdutos_.Ui_MainWindow):
             l=0
             c=0
             for item in resultado:
+                c = 0
                 for colItem in item:
                     newItem = QTableWidgetItem(str(colItem))
                     self.tabelaConsultaProdutos.setItem(l,c, newItem)
@@ -49,14 +51,17 @@ class ConsultaProdutos(QMainWindow, consultaProdutos_.Ui_MainWindow):
         row = self.tabelaConsultaProdutos.currentRow()
         id = self.tabelaConsultaProdutos.item(row, 0).text()
         lista = self.buscar_id_bd(int(id,))
-        self.obj_edita.lineEdit.setText(str(lista[0][0]))
-        self.obj_edita.lineNome.setText(str(lista[0][1]))
-        self.obj_edita.lineDescricao.setText(str(lista[0][2]))
-        self.obj_edita.lineQtd.setText(str(lista[0][3]))
-        self.obj_edita.lineQtdMin.setText(str(lista[0][4]))
-        self.obj_edita.lineValor.setText(str(lista[0][5]))
-        self.obj_edita.show()
+        if lista:
+            self.obj_edita.lineEdit.setText(str(lista[0][0]))
+            self.obj_edita.lineNome.setText(str(lista[0][1]))
+            self.obj_edita.lineDescricao.setText(str(lista[0][2]))
+            self.obj_edita.lineQtd.setText(str(lista[0][3]))
+            self.obj_edita.lineQtdMin.setText(str(lista[0][4]))
+            self.obj_edita.lineValor.setText(str(lista[0][5]))
+            self.obj_edita.show()
+        else:
 
+            QMessageBox.about(ConsultaProdutos(), "Erro", "Não foi possível alterar o produto")
 
     def buscar_id_bd(self, id):
         lista = self.cad_prod.selecionar(id)
