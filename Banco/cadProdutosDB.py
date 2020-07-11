@@ -18,13 +18,14 @@ class CadProdutosDB:
         self.conexao.close()
 
 
-    def alterar(self, nome, descricao, quantidade, qtd_minima, valor, idProduto=None):
-        query = "UPDATE produtos SET nome = %s, descricao= %s, qtde_estoque = %s, qtde_minimo" \
-                " = %s, valor_produto=%s WHERE idProduto = ?"
-        self.cursor.execute(query, (nome, descricao, quantidade, qtd_minima, valor, int(idProduto),))
-        self.conexao.commit()
-        self.conexao.close()
-        self.cursor.close()
+    def alterar(nome, descricao, qtde_estoque, qtde_minimo, valor_produto, idProduto):
+        query = "UPDATE produtos SET nome = ?, descricao= ?, qtde_estoque = ?, qtde_minimo = ?, valor_produto = ? WHERE idProduto = ?"
+        conexao = sqlite3.connect("estoque.db")
+        cursor = conexao.cursor()
+        cursor.execute(query, (nome, descricao, qtde_estoque, qtde_minimo, valor_produto, idProduto))
+        conexao.commit()
+
+
 
     def selecionar(self, id):
         query = "SELECT * FROM produtos WHERE idProduto = ?"
