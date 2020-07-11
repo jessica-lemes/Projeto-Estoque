@@ -1,5 +1,7 @@
-from PyQt5.QtWidgets import QMainWindow, QWidget
+from PyQt5.QtWidgets import QMainWindow,QWidget
+from PyQt5 import QtWidgets
 from Interface import Home, cadProdutosMain, consultaProdutosMain, UsuariosMain, EstoqueMain
+from Banco.menu_dados import Dados_Menu
 
 
 class HomeMain(QMainWindow, Home.Ui_Home):
@@ -17,6 +19,7 @@ class HomeMain(QMainWindow, Home.Ui_Home):
 
         self.ConsultarEstoque.triggered.connect(self.switch_cons_estoque)
 
+        self.listar_dados()
 
     def switch_cad_produtos(self):
         cad_produtos = cadProdutosMain.CadProdutos(self)
@@ -51,3 +54,17 @@ class HomeMain(QMainWindow, Home.Ui_Home):
         cons_estoque.show()
         home = HomeMain()
         home.close()
+
+    def estoque_baixo(self):
+        resultado = Dados_Menu.estoque_baixo(Dados_Menu('estoque.db'))
+        return resultado
+
+    def listar_dados(self):
+        dado_lido = self.estoque_baixo()
+        if len(dado_lido) > 0:
+            self.listWidget.addItem("Produtos com estoque baixo: \n")
+            for item in dado_lido:
+                self.listWidget.addItem("Produto: "+ item[1]+" "+item[2]+" - Quantidade em estoque = "+str(item[3]))
+                self.listWidget.addItem("")
+        else:
+            self.listWidget.addItem("Parabéns! Seu estoque está abastecido conforme o esperado!!")

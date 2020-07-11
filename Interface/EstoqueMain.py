@@ -1,12 +1,15 @@
 from PyQt5 import uic, QtWidgets
 from PyQt5.QtWidgets import QMessageBox, QMainWindow
 from PyQt5.Qt import QTableWidgetItem
+from Banco.Movimentacao_dados import Querys_movimentacao
 from Banco.db_estoque import Querys
 from Interface import consultarEstoque, editarEstoque
+
 
 app=QtWidgets.QApplication([])
 
 comandos_db_usuarios = Querys('estoque.db')
+comandos_db_movimentacao = Querys_movimentacao('estoque.db')
 
 class Consultar(QMainWindow, consultarEstoque.Ui_MainWindow):
     def __init__(self, parent=None):
@@ -85,13 +88,14 @@ class Editar(QMainWindow, editarEstoque.Ui_editarEstoque):
     def botao_salvar(self):
         id = self.lineCodigo.text()
         qtde_estoque = self.lineAtualizar.text()
-        self.salvaAlteracaoEstoque(qtde_estoque, id)
-        self.botao_atual_limpar()
+        self.salvaAlteracaoEstoque(qtde_estoque, id, 1)
+        self.botao_limpar()
 
-    def salvaAlteracaoEstoque(self, qtde_estoque, id):
+    def salvaAlteracaoEstoque(self, qtde_estoque, idProduto, idUsuario_FK):
         tela_edita_estoque = Editar(self)
         if qtde_estoque == "":
             QMessageBox.about(tela_edita_estoque,"Alerta","Obrigatório o preenchimento do campo.")
         else:
-            Querys.atualizar_estoque(comandos_db_usuarios, qtde_estoque, id)
+            Querys.atualizar_estoque(comandos_db_usuarios, qtde_estoque, idProduto)
+            Querys_movimentacao.cadastra_movimentacao(comandos_db_movimentacao, "tipo", qtde_estoque, idProduto, idUsuario_FK)
             QMessageBox.about(tela_edita_estoque,"Mensagem","Estoque alterado com sucesso.")
