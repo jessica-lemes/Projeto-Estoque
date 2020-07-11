@@ -1,6 +1,6 @@
 from PyQt5.QtWidgets import QMainWindow, QWidget
 from Interface import Home, cadProdutosMain, consultaProdutosMain, UsuariosMain, EstoqueMain
-
+from Banco import cadProdutosDB
 
 class HomeMain(QMainWindow, Home.Ui_Home):
 
@@ -11,19 +11,16 @@ class HomeMain(QMainWindow, Home.Ui_Home):
         self.CadastrarProdutos.triggered.connect(self.switch_cad_produtos)
         self.ConsultarProdutos.triggered.connect(self.switch_cons_produtos)
         self.menuLogout.triggered.connect(self.sair)
-
         self.ConsultarUsuario.triggered.connect(self.switch_cons_usuarios)
         self.CadastrarUsuario.triggered.connect(self.switch_cad_usuarios)
-
         self.ConsultarEstoque.triggered.connect(self.switch_cons_estoque)
-
+        obj_cad_db = cadProdutosDB.CadProdutosDB()
 
     def switch_cad_produtos(self):
         cad_produtos = cadProdutosMain.CadProdutos(self)
         cad_produtos.show()
         home = HomeMain()
         home.close()
-
 
     def switch_cons_produtos(self):
         cons_produtos = consultaProdutosMain.ConsultaProdutos(self)
@@ -51,3 +48,5 @@ class HomeMain(QMainWindow, Home.Ui_Home):
         cons_estoque.show()
         home = HomeMain()
         home.close()
+
+
