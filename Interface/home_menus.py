@@ -1,6 +1,11 @@
-from PyQt5.QtWidgets import QMainWindow, QWidget
+from PyQt5.QtWidgets import QMainWindow,QWidget
+from PyQt5 import QtWidgets
 from Interface import Home, cadProdutosMain, consultaProdutosMain, UsuariosMain, EstoqueMain
+<<<<<<< HEAD
 from Banco import cadProdutosDB
+=======
+from Banco.menu_dados import Dados_Menu
+>>>>>>> 05032c66e79c5205bfb277a7c9608082a633479c
 
 
 class HomeMain(QMainWindow, Home.Ui_Home):
@@ -15,7 +20,12 @@ class HomeMain(QMainWindow, Home.Ui_Home):
         self.ConsultarUsuario.triggered.connect(self.switch_cons_usuarios)
         self.CadastrarUsuario.triggered.connect(self.switch_cad_usuarios)
         self.ConsultarEstoque.triggered.connect(self.switch_cons_estoque)
+<<<<<<< HEAD
         obj_cad_db = cadProdutosDB.CadProdutosDB()
+=======
+
+        self.listar_dados()
+>>>>>>> 05032c66e79c5205bfb277a7c9608082a633479c
 
     def switch_cad_produtos(self):
         cad_produtos = cadProdutosMain.CadProdutos(self)
@@ -50,5 +60,21 @@ class HomeMain(QMainWindow, Home.Ui_Home):
         home = HomeMain()
         home.close()
 
+<<<<<<< HEAD
 
     def
+=======
+    def estoque_baixo(self):
+        resultado = Dados_Menu.estoque_baixo(Dados_Menu('estoque.db'))
+        return resultado
+
+    def listar_dados(self):
+        dado_lido = self.estoque_baixo()
+        if len(dado_lido) > 0:
+            self.listWidget.addItem("Produtos com estoque baixo: \n")
+            for item in dado_lido:
+                self.listWidget.addItem("Produto: "+ item[1]+" "+item[2]+" - Quantidade em estoque = "+str(item[3]))
+                self.listWidget.addItem("")
+        else:
+            self.listWidget.addItem("Parabéns! Seu estoque está abastecido conforme o esperado!!")
+>>>>>>> 05032c66e79c5205bfb277a7c9608082a633479c
