@@ -2,6 +2,7 @@ from PyQt5.QtWidgets import QMainWindow, QWidget
 from Interface import Home, cadProdutosMain, consultaProdutosMain, UsuariosMain, EstoqueMain
 from Banco import cadProdutosDB
 
+
 class HomeMain(QMainWindow, Home.Ui_Home):
 
     def __init__(self, parent=None):
@@ -50,3 +51,4 @@ class HomeMain(QMainWindow, Home.Ui_Home):
         home.close()
 
 
+    def

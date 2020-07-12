@@ -24,10 +24,11 @@ class ConsultaProdutos(QMainWindow, consultaProdutos_.Ui_MainWindow):
 
 
     def pesquisar(self):
+        resultado = self.cons_prod.selecionar_todos()
         self.tabelaConsultaProdutos.clearContents()
         if self.lineEdit.text() == '':
             l = 0
-            for item in self.resultado:
+            for item in resultado:
                 c = 0
                 for colItem in item:
                     newItem = QTableWidgetItem(str(colItem))
@@ -74,7 +75,7 @@ class ConsultaProdutos(QMainWindow, consultaProdutos_.Ui_MainWindow):
             obj_db = cadProdutosDB.CadProdutosDB()
             obj_db.excluir(id,)
             QMessageBox.about(ConsultaProdutos(), "Exclusão", "Produto excluido com sucesso")
-            self.tabelaConsultaProdutos.clearContents()
+            self.tabelaConsultaProdutos.clear()
         except ValueError:
             QMessageBox.about(ConsultaProdutos(), "Erro", "Não foi possível excluir o produto selecionado")
 
