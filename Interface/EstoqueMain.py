@@ -2,6 +2,7 @@ from PyQt5 import uic, QtWidgets
 from PyQt5.QtWidgets import QMessageBox, QMainWindow
 from PyQt5.Qt import QTableWidgetItem
 from Banco.Movimentacao_dados import Querys_movimentacao
+from Banco.cadProdutosDB import CadProdutosDB
 from Banco.db_estoque import Querys
 from Interface import consultarEstoque, editarEstoque
 
@@ -10,6 +11,7 @@ app=QtWidgets.QApplication([])
 
 comandos_db_usuarios = Querys('estoque.db')
 comandos_db_movimentacao = Querys_movimentacao('estoque.db')
+comandos_db_produto = CadProdutosDB()
 
 class Consultar(QMainWindow, consultarEstoque.Ui_MainWindow):
     def __init__(self, parent=None):
@@ -19,8 +21,10 @@ class Consultar(QMainWindow, consultarEstoque.Ui_MainWindow):
 
         self.btnVoltar.clicked.connect(self.cons_voltar)
         self.btnPesquisar.clicked.connect(self.botao_pesquisar)
+
         self.actionSair.triggered.connect(self.cons_voltar)
         self.btnEditar.clicked.connect(self.botao_editar)
+
         self.janela_principal = parent
 
     def cons_voltar(self):
@@ -50,6 +54,7 @@ class Consultar(QMainWindow, consultarEstoque.Ui_MainWindow):
         row = self.tableWidget.currentRow()
         id = self.tableWidget.item(row, 0).text()
         lista = self.buscar_id_bd(int(id))
+        self.close()
 
         tela_editar = Editar(self)
         tela_editar.show()
@@ -89,13 +94,33 @@ class Editar(QMainWindow, editarEstoque.Ui_editarEstoque):
         id = self.lineCodigo.text()
         qtde_estoque = self.lineAtualizar.text()
         self.salvaAlteracaoEstoque(qtde_estoque, id, 1)
-        self.botao_limpar()
+        self.close()
 
     def salvaAlteracaoEstoque(self, qtde_estoque, idProduto, idUsuario_FK):
         tela_edita_estoque = Editar(self)
+        tela_consulta = Consultar(self)
         if qtde_estoque == "":
             QMessageBox.about(tela_edita_estoque,"Alerta","Obrigatório o preenchimento do campo.")
         else:
+            tipo_mov = self.define_tipo_mov(idProduto,qtde_estoque)
+            quantidade_mov = self.define_quantidade_mov(idProduto,qtde_estoque)
+
             Querys.atualizar_estoque(comandos_db_usuarios, qtde_estoque, idProduto)
-            Querys_movimentacao.cadastra_movimentacao(comandos_db_movimentacao, "tipo", qtde_estoque, idProduto, idUsuario_FK)
+            Querys_movimentacao.cadastra_movimentacao(comandos_db_movimentacao, tipo_mov, quantidade_mov, idProduto, idUsuario_FK)
             QMessageBox.about(tela_edita_estoque,"Mensagem","Estoque alterado com sucesso.")
+            tela_consulta.show()
+
+    def define_tipo_mov(self, idProduto, qtde_estoque):
+        produto = CadProdutosDB.selecionar(comandos_db_produto, idProduto)
+        qnt_produto_antes = produto[0][3]
+        if int(qnt_produto_antes) > int(qtde_estoque):
+            return "baixa"
+        else:
+            return "entrada"
+
+    def define_quantidade_mov(self, idProduto, qtde_estoque):
+        produto = CadProdutosDB.selecionar(comandos_db_produto, idProduto)
+        qnt_produto_antes = produto[0][3]
+        diferenca = int(qnt_produto_antes) - int(qtde_estoque)
+        return diferenca
+

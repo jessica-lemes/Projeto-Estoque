@@ -51,11 +51,22 @@ class Querys:
         self.conexao = sqlite3.connect('estoque.db')
         self.cursor = self.conexao.cursor()
 
-        query = "SELECT * FROM usuarios WHERE cpf = ?"
-        self.cursor.execute(query, (cpf,))
+        try:
 
-        self.conexao.close()
+            query = "SELECT * FROM usuarios WHERE cpf = ?"
+
+            retorno = self.cursor.execute(query, (cpf,))
+            lista = []
+            for registro in retorno.fetchall():
+                lista.append(registro)
+            return lista
+
+        except Exception as e:
+            return "Erro"
+
         self.cursor.close()
+        self.conexao.close()
+
 
     def selecionar_id(self, id):
         self.conexao = sqlite3.connect('estoque.db')

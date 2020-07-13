@@ -20,6 +20,7 @@ class HomeMain(QMainWindow, Home.Ui_Home):
         self.ConsultarUsuario.triggered.connect(self.switch_cons_usuarios)
         self.CadastrarUsuario.triggered.connect(self.switch_cad_usuarios)
         self.ConsultarEstoque.triggered.connect(self.switch_cons_estoque)
+        self.ConsultarMovimentacao.triggered.connect(self.switch_movimentacao)
 
         obj_cad_db = cadProdutosDB.CadProdutosDB()
 
