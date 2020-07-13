@@ -39,12 +39,11 @@ class CadProdutosDB:
         self.conexao.close()
         self.cursor.close()
 
-    def excluir(self, nome):
-        query = "DELETE FROM produtos WHERE nome = %s"
-        self.cursor.execute(query, (nome,))
+    def excluir(self, id):
+        query = "DELETE FROM produtos WHERE idProduto = ?"
+        self.cursor.execute(query, (id,))
         self.conexao.commit()
-        self.conexao.close()
-        self.cursor.close()
+
 
     def __getitem__(self, item):
         return self.resultado[item]

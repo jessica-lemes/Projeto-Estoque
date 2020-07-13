@@ -3,7 +3,7 @@ from PyQt5.QtWidgets import QMessageBox, QMainWindow
 from Banco.estoque_db_tables import Banco
 from Banco.estoque_db_querys_autenticacao import Querys_Autenticacao
 from Banco.estoque_db_querys_usuarios import Querys
-from Interface import Projeto_Login, Home
+from Interface import Projeto_Login, home_menus
 
 app = QtWidgets.QApplication([])
 
@@ -14,7 +14,7 @@ app.exec()
 Banco('estoque.db')
 comandos_db = Querys_Autenticacao('estoque.db')
 comandos_db_usuarios = Querys('estoque.db')
-telaHome = uic.loadUi("Home.ui")
+telaHome = home_menus.HomeMain()
 
 class Login(QMainWindow,Projeto_Login.Ui_Login):
     def __init__(self, parent=None):
@@ -54,3 +54,7 @@ class Login(QMainWindow,Projeto_Login.Ui_Login):
         return autenticado
 
 
+# app = QtWidgets.QApplication([])
+# #telaLogin=uic.loadUi("Projeto_Login.ui")
+# #telaLogin.show()
+# app.exec()

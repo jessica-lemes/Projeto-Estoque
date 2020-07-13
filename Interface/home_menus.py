@@ -1,6 +1,9 @@
 from PyQt5.QtWidgets import QMainWindow,QWidget
 from PyQt5 import QtWidgets
-from Interface import Home, cadProdutosMain, consultaProdutosMain, UsuariosMain, EstoqueMain, MovimentacaoMain
+from Interface import Home, cadProdutosMain, consultaProdutosMain, UsuariosMain, EstoqueMain
+
+from Banco import cadProdutosDB
+
 from Banco.menu_dados import Dados_Menu
 
 
@@ -18,6 +21,9 @@ class HomeMain(QMainWindow, Home.Ui_Home):
         self.CadastrarUsuario.triggered.connect(self.switch_cad_usuarios)
         self.ConsultarEstoque.triggered.connect(self.switch_cons_estoque)
         self.ConsultarMovimentacao.triggered.connect(self.switch_movimentacao)
+
+        obj_cad_db = cadProdutosDB.CadProdutosDB()
+
 
         self.listar_dados()
 
@@ -68,8 +74,3 @@ class HomeMain(QMainWindow, Home.Ui_Home):
         else:
             self.listWidget.addItem("Parabéns! Seu estoque está abastecido conforme o esperado!!")
 
-    def switch_movimentacao(self):
-        movimentacao = MovimentacaoMain.Movimentacao(self)
-        movimentacao.show()
-        home = HomeMain()
-        home.close()

@@ -15,6 +15,7 @@ class ConsultaProdutos(QMainWindow, consultaProdutos_.Ui_MainWindow):
         self.btnVoltar.clicked.connect(self.voltar)
         self.btnEditar.clicked.connect(self.abre_janela_edit)
         self.btnLimpar.clicked.connect(self.limpar)
+        self.btnExcluir.clicked.connect(self.excluir)
         self.cons_prod = cadProdutosDB.CadProdutosDB()
         self.resultado = self.cons_prod.selecionar_todos()
         self.obj_edita = editaProdutosMain.EditaProdutosMain()
@@ -23,10 +24,11 @@ class ConsultaProdutos(QMainWindow, consultaProdutos_.Ui_MainWindow):
 
 
     def pesquisar(self):
+        resultado = self.cons_prod.selecionar_todos()
         self.tabelaConsultaProdutos.clearContents()
         if self.lineEdit.text() == '':
             l = 0
-            for item in self.resultado:
+            for item in resultado:
                 c = 0
                 for colItem in item:
                     newItem = QTableWidgetItem(str(colItem))
@@ -60,12 +62,22 @@ class ConsultaProdutos(QMainWindow, consultaProdutos_.Ui_MainWindow):
             self.obj_edita.lineValor.setText(str(lista[0][5]))
             self.obj_edita.show()
         else:
-
             QMessageBox.about(ConsultaProdutos(), "Erro", "Não foi possível alterar o produto")
 
     def buscar_id_bd(self, id):
         lista = self.cad_prod.selecionar(id)
         return lista
+
+    def excluir(self):
+        try:
+            row = self.tabelaConsultaProdutos.currentRow()
+            id = self.tabelaConsultaProdutos.item(row, 0).text()
+            obj_db = cadProdutosDB.CadProdutosDB()
+            obj_db.excluir(id,)
+            QMessageBox.about(ConsultaProdutos(), "Exclusão", "Produto excluido com sucesso")
+            self.tabelaConsultaProdutos.clear()
+        except ValueError:
+            QMessageBox.about(ConsultaProdutos(), "Erro", "Não foi possível excluir o produto selecionado")
 
     def __getitem__(self, item):
         return self.resultado[item]
