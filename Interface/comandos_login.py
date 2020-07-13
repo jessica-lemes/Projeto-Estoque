@@ -7,6 +7,10 @@ from Interface import Projeto_Login, Home
 
 app = QtWidgets.QApplication([])
 
+#telaLogin=uic.loadUi("Projeto_Login.ui")
+#telaLogin.show()
+app.exec()
+
 Banco('estoque.db')
 comandos_db = Querys_Autenticacao('estoque.db')
 comandos_db_usuarios = Querys('estoque.db')
@@ -50,7 +54,3 @@ class Login(QMainWindow,Projeto_Login.Ui_Login):
         return autenticado
 
 
-app = QtWidgets.QApplication([])
-#telaLogin=uic.loadUi("Projeto_Login.ui")
-#telaLogin.show()
-app.exec()

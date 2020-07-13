@@ -212,10 +212,24 @@ class EditarUsuario(QMainWindow, editarUsuarios.Ui_editUsuarios):
             if len(cpf) < 11:
                 QMessageBox.about(tela_editar, "Alerta", "CPF Inválido.")
             else:
-                verifica_existente = Querys.Verifica_se_existe(comandos_db_usuarios, cpf)
+
+                verifica_existente = self.detecta_cpf(cpf, id)
                 if verifica_existente is True and verifica_existente != "Erro":
                     QMessageBox.about(tela_editar, "Alerta", "CPF já cadastrado no banco de dados.")
                 else:
                     Querys.editar(comandos_db_usuarios, nome, cpf, email, senha,funcao, situacao, tipo_usuario, id)
                     QMessageBox.about(tela_editar,"Mensagem","Cadastro alterado com sucesso.")
-                    self.edit_limpar()
+                    self.edit_voltar()
+
+    def detecta_cpf(self, cpf, idUsuario):
+        usuario = Querys.selecionar_cpf(comandos_db_usuarios, cpf)
+        if usuario != "Erro":
+            if cpf == usuario[0][2]:
+                if int(idUsuario) == usuario[0][0]:
+                    return False
+                else:
+                    return True
+            else:
+                return False
+        else:
+            return "Erro"
