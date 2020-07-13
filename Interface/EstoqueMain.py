@@ -6,7 +6,6 @@ from Banco.cadProdutosDB import CadProdutosDB
 from Banco.db_estoque import Querys
 from Interface import consultarEstoque, editarEstoque
 
-
 app=QtWidgets.QApplication([])
 
 comandos_db_usuarios = Querys('estoque.db')

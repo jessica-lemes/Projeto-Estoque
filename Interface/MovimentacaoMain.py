@@ -1,11 +1,9 @@
 from PyQt5 import QtWidgets
-from PyQt5.QtWidgets import QMainWindow, QMessageBox, QTableWidgetItem
-
+from PyQt5.QtWidgets import QMainWindow, QTableWidgetItem
 from Banco.Movimentacao_dados import Querys_movimentacao
 from Interface import consultarMovimentacao
 
 app=QtWidgets.QApplication([])
-
 
 class Movimentacao(QMainWindow, consultarMovimentacao.Ui_MainWindow):
     def __init__(self, parent=None):

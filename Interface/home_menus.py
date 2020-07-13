@@ -1,12 +1,7 @@
-from PyQt5.QtWidgets import QMainWindow,QWidget
-from PyQt5 import QtWidgets
-from Interface import Home, cadProdutosMain, consultaProdutosMain, UsuariosMain, EstoqueMain
-
+from PyQt5.QtWidgets import QMainWindow
+from Interface import Home, cadProdutosMain, consultaProdutosMain, UsuariosMain, EstoqueMain, MovimentacaoMain, comandos_login
 from Banco import cadProdutosDB
-
 from Banco.menu_dados import Dados_Menu
-
-
 
 class HomeMain(QMainWindow, Home.Ui_Home):
 
@@ -21,10 +16,8 @@ class HomeMain(QMainWindow, Home.Ui_Home):
         self.CadastrarUsuario.triggered.connect(self.switch_cad_usuarios)
         self.ConsultarEstoque.triggered.connect(self.switch_cons_estoque)
         self.ConsultarMovimentacao.triggered.connect(self.switch_movimentacao)
-
+        self.Logout.triggered.connect(self.switch_login)
         obj_cad_db = cadProdutosDB.CadProdutosDB()
-
-
         self.listar_dados()
 
     def switch_cad_produtos(self):
@@ -45,20 +38,14 @@ class HomeMain(QMainWindow, Home.Ui_Home):
     def switch_cons_usuarios(self):
         cons_usuarios = UsuariosMain.ConsultaUsuarios(self)
         cons_usuarios.show()
-        home = HomeMain()
-        home.close()
 
     def switch_cad_usuarios(self):
         cad_usuarios = UsuariosMain.CadastraUsuarios(self)
         cad_usuarios.show()
-        home = HomeMain()
-        home.close()
 
     def switch_cons_estoque(self):
         cons_estoque = EstoqueMain.Consultar(self)
         cons_estoque.show()
-        home = HomeMain()
-        home.close()
 
     def estoque_baixo(self):
         resultado = Dados_Menu.estoque_baixo(Dados_Menu('estoque.db'))
@@ -74,3 +61,10 @@ class HomeMain(QMainWindow, Home.Ui_Home):
         else:
             self.listWidget.addItem("Parabéns! Seu estoque está abastecido conforme o esperado!!")
 
+    def switch_movimentacao(self):
+        movimentacao = MovimentacaoMain.Movimentacao(self)
+        movimentacao.show()
+
+    def switch_login(self):
+        login = comandos_login.Login(self)
+        login.show()

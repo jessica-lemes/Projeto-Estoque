@@ -37,7 +37,6 @@ class Querys_movimentacao:
         self.conexao.close()
         self.cursor.close()
 
-
     def buscar_banco(self, produto, data, tipo, usuario):
         self.conexao = sqlite3.connect('estoque.db')
         self.cursor = self.conexao.cursor()
@@ -61,7 +60,6 @@ class Querys_movimentacao:
         if usuario != "" and usuario != "%%":
             query += "and u.nome like '" + usuario + "'"
 
-
         try:
             retorno = self.cursor.execute(query)
             lista = []
@@ -78,12 +76,4 @@ class Querys_movimentacao:
 
 if __name__ == '__main__':
     banco = Querys_movimentacao('estoque.db')
-
-
-#SELECT m.idMovimento, m.data_mov, m.tipo, p.nome, p.descricao ,m.qtde, u.nome from movimentacao m
-#join produtos p
-#	on m.idProduto_FK = p.idProduto
-#join usuarios u
-#	on m.idUsuario_FK = u.idUsuario
-#WHERE 1 = 1
 

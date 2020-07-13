@@ -1,7 +1,7 @@
 from PyQt5 import uic, QtWidgets
 from PyQt5.QtWidgets import QMainWindow, QMessageBox
 from PyQt5.Qt import QTableWidgetItem
-from Interface import consultarEstoque, consultarUsuarios,cadUsuarios, editarUsuarios, Home
+from Interface import consultarUsuarios,cadUsuarios, editarUsuarios
 from Banco.estoque_db_querys_usuarios import Querys
 
 app=QtWidgets.QApplication([])

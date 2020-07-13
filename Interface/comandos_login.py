@@ -1,4 +1,4 @@
-from PyQt5 import uic, QtWidgets
+from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QMessageBox, QMainWindow
 from Banco.estoque_db_tables import Banco
 from Banco.estoque_db_querys_autenticacao import Querys_Autenticacao
@@ -6,10 +6,6 @@ from Banco.estoque_db_querys_usuarios import Querys
 from Interface import Projeto_Login, home_menus
 
 app = QtWidgets.QApplication([])
-
-#telaLogin=uic.loadUi("Projeto_Login.ui")
-#telaLogin.show()
-app.exec()
 
 Banco('estoque.db')
 comandos_db = Querys_Autenticacao('estoque.db')
@@ -40,7 +36,6 @@ class Login(QMainWindow,Projeto_Login.Ui_Login):
             else:
                 valida_usuario = self.Autenticar_Banco(usuario, senha)
                 if valida_usuario != None and valida_usuario != "Erro":
-
                     self.close()
                     telaHome.show()
                     QMessageBox.about(telaHome,"Bem-vindo(a)","Olá " + valida_usuario)
@@ -48,13 +43,5 @@ class Login(QMainWindow,Projeto_Login.Ui_Login):
                     QMessageBox.about(self,"Alerta","Usuário e Senha inválidos.")
 
     def Autenticar_Banco(self, usuario ,senha):
-
         autenticado = Querys_Autenticacao.Autenticar(comandos_db, usuario,senha)
-
         return autenticado
-
-
-# app = QtWidgets.QApplication([])
-# #telaLogin=uic.loadUi("Projeto_Login.ui")
-# #telaLogin.show()
-# app.exec()
