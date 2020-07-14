@@ -1,6 +1,6 @@
 from PyQt5.QtWidgets import QMainWindow, QMessageBox
 from PyQt5.Qt import QTableWidgetItem
-from Interface import consultaProdutos_, cadProdutosMain, editaProdutosMain
+from Interface import consultaProdutos_, cadProdutosMain, editaProdutosMain, app_data
 from Banco import cadProdutosDB
 
 
@@ -11,17 +11,37 @@ class ConsultaProdutos(QMainWindow, consultaProdutos_.Ui_MainWindow):
         super().setupUi(self)
         self.btnPesquisar.clicked.connect(self.pesquisar)
         self.actionsair.triggered.connect(self.voltar)
-        self.btnNovo.clicked.connect(self.janela_cadastro)
+        self.btnNovo.clicked.connect(self.permissao_novo)
         self.btnVoltar.clicked.connect(self.voltar)
-        self.btnEditar.clicked.connect(self.abre_janela_edit)
+        self.btnEditar.clicked.connect(self.permissao_editar)
         self.btnLimpar.clicked.connect(self.limpar)
-        self.btnExcluir.clicked.connect(self.excluir)
+        self.btnExcluir.clicked.connect(self.permissao_excluir)
         self.cons_prod = cadProdutosDB.CadProdutosDB()
         self.resultado = self.cons_prod.selecionar_todos()
         self.obj_edita = editaProdutosMain.EditaProdutosMain()
         self.Querys = cadProdutosMain.CadProdutos()
         self.cad_prod = cadProdutosDB.CadProdutosDB()
 
+    def permissao_novo(self):
+        permissaoUsuario = app_data.__userPermissao__
+        if permissaoUsuario != "admin":
+            QMessageBox.about(self, "Mensagem", "Somente para administradores.")
+        else:
+            self.btnNovo.clicked.connect(self.janela_cadastro)
+
+    def permissao_excluir(self):
+        permissaoUsuario = app_data.__userPermissao__
+        if permissaoUsuario != "admin":
+            QMessageBox.about(self, "Mensagem", "Somente para administradores.")
+        else:
+            self.btnExcluir.clicked.connect(self.excluir)
+
+    def permissao_editar(self):
+        permissaoUsuario = app_data.__userPermissao__
+        if permissaoUsuario != "admin":
+            QMessageBox.about(self, "Mensagem", "Somente para administradores.")
+        else:
+            self.btnEditar.clicked.connect(self.abre_janela_edit)
 
     def pesquisar(self):
         resultado = self.cons_prod.selecionar_todos()

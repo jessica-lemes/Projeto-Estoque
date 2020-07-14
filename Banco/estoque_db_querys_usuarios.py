@@ -16,8 +16,10 @@ class Querys:
                    "VALUES (?, ?, ?, ?, ?, ?, ?)"
         self.cursor.execute(query, (nome, cpf, email, senha, funcao, situacao, tipo_usuario))
         self.conexao.commit()
+        ultimoId = self.cursor.lastrowid
         self.cursor.close()
         self.conexao.close()
+        return ultimoId
 
 
     def editar(self, nome, cpf, email, senha=None, funcao=None, situacao=None, tipo_usuario=None, id_usuario=None):

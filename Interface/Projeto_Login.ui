@@ -49,13 +49,14 @@
       <rect>
        <x>250</x>
        <y>90</y>
-       <width>71</width>
-       <height>41</height>
+       <width>101</width>
+       <height>61</height>
       </rect>
      </property>
      <property name="font">
       <font>
-       <pointsize>20</pointsize>
+       <family>Ubuntu Thin</family>
+       <pointsize>30</pointsize>
        <weight>75</weight>
        <bold>true</bold>
       </font>
@@ -143,19 +144,6 @@
      </property>
      <property name="placeholderText">
       <string>Digite a senha</string>
-     </property>
-    </widget>
-    <widget class="QCheckBox" name="cbxEsqueciSenha">
-     <property name="geometry">
-      <rect>
-       <x>190</x>
-       <y>250</y>
-       <width>131</width>
-       <height>23</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Esqueci a senha</string>
      </property>
     </widget>
     <widget class="QPushButton" name="btnLogar">

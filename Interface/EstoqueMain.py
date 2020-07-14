@@ -4,7 +4,7 @@ from PyQt5.Qt import QTableWidgetItem
 from Banco.Movimentacao_dados import Querys_movimentacao
 from Banco.cadProdutosDB import CadProdutosDB
 from Banco.db_estoque import Querys
-from Interface import consultarEstoque, editarEstoque
+from Interface import consultarEstoque, editarEstoque, app_data
 
 app=QtWidgets.QApplication([])
 
@@ -20,11 +20,18 @@ class Consultar(QMainWindow, consultarEstoque.Ui_MainWindow):
 
         self.btnVoltar.clicked.connect(self.cons_voltar)
         self.btnPesquisar.clicked.connect(self.botao_pesquisar)
-
         self.actionSair.triggered.connect(self.cons_voltar)
-        self.btnEditar.clicked.connect(self.botao_editar)
+        self.btnEditar.clicked.connect(self.permissao)
 
         self.janela_principal = parent
+
+    def permissao(self):
+        permissaoUsuario = app_data.__userPermissao__
+        if permissaoUsuario != "admin":
+            QMessageBox.about(self, "Mensagem", "Somente para administradores.")
+        else:
+            self.botao_editar()
+
 
     def cons_voltar(self):
         self.close()
@@ -92,7 +99,8 @@ class Editar(QMainWindow, editarEstoque.Ui_editarEstoque):
     def botao_salvar(self):
         id = self.lineCodigo.text()
         qtde_estoque = self.lineAtualizar.text()
-        self.salvaAlteracaoEstoque(qtde_estoque, id, 1)
+        idUsuario = app_data.__userId__
+        self.salvaAlteracaoEstoque(qtde_estoque, id, idUsuario)
         self.close()
 
     def salvaAlteracaoEstoque(self, qtde_estoque, idProduto, idUsuario_FK):
@@ -121,5 +129,5 @@ class Editar(QMainWindow, editarEstoque.Ui_editarEstoque):
         produto = CadProdutosDB.selecionar(comandos_db_produto, idProduto)
         qnt_produto_antes = produto[0][3]
         diferenca = int(qnt_produto_antes) - int(qtde_estoque)
-        return diferenca
+        return abs(diferenca)
 

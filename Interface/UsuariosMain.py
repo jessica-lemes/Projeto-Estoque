@@ -30,6 +30,7 @@ class ConsultaUsuarios(QMainWindow, consultarUsuarios.Ui_MainWindow):
         tela_cad_usuarios.show()
 
     def botao_pesquisar(self):
+
         self.tableWidget.clearContents()
 
         nome = self.lineNome.text()
@@ -44,6 +45,8 @@ class ConsultaUsuarios(QMainWindow, consultarUsuarios.Ui_MainWindow):
                 c += 1
             l += 1
         self.lineNome.setText('')
+        #self.tableWidget.setColumnHidden(4,True)
+
 
     def pesquisar_banco(self, nome):
         pesquisa = Querys.buscar_banco(Querys('estoque.db'), nome)

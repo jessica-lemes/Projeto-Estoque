@@ -11,12 +11,14 @@ class Querys_Autenticacao:
         self.conexao = sqlite3.connect('estoque.db')
         self.cursor = self.conexao.cursor()
 
-        query = "select nome from usuarios where CPF = ? and senha = ?"
+        query = "select idUsuario, nome, tipoUsuario from usuarios where CPF = ? and senha = ?"
         try:
             retorno = self.cursor.execute(query,(cpf, senha))
 
+            lista =[]
+
             for registro in retorno.fetchall():
-                return registro[0]
+                return registro
 
             self.cursor.close()
             self.conexao.close()
